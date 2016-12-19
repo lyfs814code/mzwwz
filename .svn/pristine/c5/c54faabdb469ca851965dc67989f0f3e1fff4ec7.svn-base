@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>用户管理列表</h3>
+				</div>
+				<div class="pull-right">[@p.add obj="sysUser" /]</div>
+			</div>
+			<!-- 查询表单 -->
+			<form class="form-inline form-search" action="sysUser/list.do" method="post" id="tableForm">
+				<input type="hidden" name="paging.currentPage" value="${sysUserCriteria.paging.currentPage}" />
+				<div class="form-group">
+					<label>用户名：</label>
+					<input type="text" name="useridQry" class="form-control" placeholder="用户名" value="" />
+				</div>
+				<div class="form-group">
+					<label>姓名：</label>
+					<input type="text" name="nameQry" class="form-control" placeholder="姓名" value="" />						
+				</div>
+				<div class="form-group">
+					<label>账号状态：</label>
+					[@p.constant_radio code_type="USER_STATUS" name="userstatusQry" value="${sysUserCriteria.userstatusQry!}" search="true"/]	
+				</div>
+				[@p.search/]
+			</form>
+			<!-- 数据列表 -->
+			<div class="row">
+				<div class="col-lg-12">
+				[@p.table value=sysUserList paging=sysUserCriteria.paging;sysUser,i,has_next]
+							[@p.column title="用户名"]
+							<a onclick="btnHref('#sysUser/detail.do?userid=${sysUser.userid}')">
+							${sysUser.userid!}
+							</a>
+							[/@p.column]
+								[@p.column title="姓名"]${sysUser.name!}[/@p.column]
+								[@p.column title="邮箱"]${sysUser.email!}[/@p.column]
+								[@p.column title="电话"]${sysUser.phone!}[/@p.column]
+								[@p.column title="地址"]${sysUser.address!}[/@p.column]
+								[@p.column title="账号状态"]
+									[@p.constant_value code_type="USER_STATUS" value="${sysUser.userstatus!}"/]
+								[/@p.column]
+							[@p.column title="操作" style="width:130px;"] 
+						[@p.operate id="${sysUser.userid}" parID="userid" obj="sysUser"/]
+					[/@p.column] 				
+				[/@p.table]
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

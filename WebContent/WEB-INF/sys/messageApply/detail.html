@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>回复信息</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 详细表单 -->
+			[@p.form id="" action=""]
+				<div class="clearfix">
+					<div class="form-group col-lg-3" style="display: none;">	
+						<label><span>*</span>Id</label>			
+						<input type="text" class="form-control" value="${messageApply.id!}" />						
+					</div>	
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>messageId</label>			
+						<input type="text" class="form-control" value="${messageApply.messageId!}"disabled="disabled" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>内容</label>			
+						<input type="text" class="form-control" value="${messageApply.detail!}"disabled="disabled" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>创建人</label>			
+						<input type="text" class="form-control" value="${messageApply.creater!}"disabled="disabled" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>创建时间</label>			
+						<input type="text" class="form-control" value="${(messageApply.createTime?string('yyyy-MM-dd'))!''}" disabled="disabled"/>						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>修改人</label>			
+						<input type="text" class="form-control" value="${messageApply.modifier!}" disabled="disabled"/>						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>修改时间</label>			
+						<input type="text" class="form-control" value="${(messageApply.modifyTime?string('yyyy-MM-dd'))!''}" disabled="disabled"/>						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="col-sm-12 col-lg-8">[@p.btn_detail ctr="messageApply"  id="${messageApply.id}" parID="id"/]</div>
+				</div>
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>

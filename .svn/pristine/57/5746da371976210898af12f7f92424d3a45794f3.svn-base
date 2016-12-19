@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>sysMenu信息</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 详细表单 -->
+			[@p.form id="" action=""]
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>menuId</label>			
+						<input type="text" class="form-control" value="${sysMenu.menuId!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>menuName</label>			
+						<input type="text" class="form-control" value="${sysMenu.menuName!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>menuUrl</label>			
+						<input type="text" class="form-control" value="${sysMenu.menuUrl!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>menuImg</label>			
+						<input type="text" class="form-control" value="${sysMenu.menuImg!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>orderNo</label>			
+						<input type="text" class="form-control" value="${sysMenu.orderNo!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>preId</label>			
+						<input type="text" class="form-control" value="${sysMenu.preId!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>isParent</label>			
+						<input type="text" class="form-control" value="${sysMenu.isParent!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>isUsing</label>			
+						<input type="text" class="form-control" value="${sysMenu.isUsing!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>menuType</label>			
+						<input type="text" class="form-control" value="${sysMenu.menuType!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>menuTree</label>			
+						<input type="text" class="form-control" value="${sysMenu.menuTree!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="col-sm-12 col-lg-8">[@p.btn_detail ctr="SysMenu"  id="${sysMenu.menuId}" parID="menuId"/]</div>
+				</div>
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>

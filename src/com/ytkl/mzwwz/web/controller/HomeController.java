@@ -1,0 +1,68 @@
+package com.ytkl.mzwwz.web.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ytkl.mzwwz.aspect.ActionControllerLog;
+import com.ytkl.mzwwz.criteria.CityWeatherCriteria;
+import com.ytkl.mzwwz.criteria.SysMenuCriteria;
+import com.ytkl.mzwwz.domain.CityWeather;
+import com.ytkl.mzwwz.domain.SysMenu;
+import com.ytkl.mzwwz.service.CityWeatherService;
+import com.ytkl.mzwwz.service.SysCodeValueService;
+import com.ytkl.mzwwz.service.SysMenuService;
+
+@Controller
+public class HomeController {
+	@Autowired
+	private SysCodeValueService sysCodeValueService;
+	@Autowired
+	private SysMenuService sysMenuService;
+	@Autowired
+	private HttpSession session;
+	@Autowired
+	private CityWeatherService cityWeatherService;
+
+	/**
+	 * 登录后整体页面
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/main.do")
+	public String main(ModelMap model) {
+
+		// 加载菜单
+		SysMenuCriteria criteria = new SysMenuCriteria();
+		criteria.setIsUsing("1");// 已启用的菜单
+		List<SysMenu> menuInfoList = sysMenuService.list(criteria);
+
+		model.addAttribute("menuInfoList", menuInfoList);
+
+		return "main";
+	}
+
+	/**
+	 * 系统管理--首页
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@ActionControllerLog(channel = "web", action = "home", title = "首页", isSaveRequestData = true)
+	@RequestMapping("/home.do")
+	public String home(ModelMap model) {
+
+		List<CityWeather> cityWeatherList = cityWeatherService.list(new CityWeatherCriteria());
+		
+		model.addAttribute("cityWeatherList", cityWeatherList);
+		
+		return "home";
+	}
+
+}

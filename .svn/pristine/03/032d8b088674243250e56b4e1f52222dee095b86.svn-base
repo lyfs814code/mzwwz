@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	$(function() {
+		$("#jvForm").bootstrapValidator({
+			feedbackIcons : {
+				valid : 'glyphicon glyphicon-ok',
+				invalid : 'glyphicon glyphicon-remove',
+				validating : 'glyphicon glyphicon-refresh'
+			},
+			fields : {
+				linkName : {
+					validators : {
+						notEmpty: {
+	                        message: '名称不能为空'
+	                    }
+					}
+				},
+				phone : {
+					validators : {
+						notEmpty: {
+	                        message: '电话不能为空'
+	                    },
+	                    regexp: {
+	                        regexp:/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/,
+	                    	message: '请输入有效的联系电话'
+	                    }
+					}
+				}
+			},
+			submitHandler : function(validator, form, submitButton) {
+				$.web.submit("jvForm");
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>修改联系方式</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 编辑表单 -->
+			[@p.form id="jvForm" action="linkInfo/update.do"]
+			<input type="hidden"  name="id" value="${linkInfo.id!}" />
+			<div class="clearfix">
+				<div class="form-group col-sm-12 col-lg-12">
+					<label>类型</label>
+					<div class="clearfix">
+						[@p.constant_radio code_type="LINK_LEVEL" name="linkLevel" value="${linkInfo.linkLevel!}"/]	
+					</div>
+				</div>
+			</div>
+			<div class="clearfix">
+				<div class="form-group col-sm-12 col-lg-3">
+					<label>联系人</label> <input type="text" class="form-control"
+						name="linkName" value="${linkInfo.linkName!}" />
+				</div>
+			</div>
+			<div class="clearfix">
+				<div class="form-group col-sm-12 col-lg-3">
+					<label>联系电话</label> <input type="text" class="form-control"
+						name="phone" value="${linkInfo.phone!}" />
+				</div>
+			</div>
+			<div class="clearfix">
+				<div class="form-group col-sm-12 col-lg-3">
+					<label>是否发布</label> 
+					<div class="form-control">
+						[@p.constant_radio code_type="IS_PUBLISH" id="publishFlag" name="publishFlag" value="${linkInfo.publishFlag!}"/]	
+					</div>
+				</div>
+			</div>
+			<div class="clearfix">
+				<div class="col-sm-12 col-lg-8">[@p.submit /][@p.cancel/]</div>
+			</div>
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>
+</html>

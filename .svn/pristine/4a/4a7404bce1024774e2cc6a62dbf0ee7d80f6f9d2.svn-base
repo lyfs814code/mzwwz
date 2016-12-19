@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>图片新闻信息</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 详细表单 -->
+			[@p.form id="" action=""]
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>名称</label>			
+						<input type="text" class="form-control" value="${newsBook.name!}" disabled="disabled"/>						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>封面图片</label>	
+						<img class="img-rounded" src="${newsBook.imgTitle!}" style="width: 300px;height: 200px;">		
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>发布状态</label>		
+						[@p.constant_value code_type="IS_PUBLISH" value="${newsBook.publishFlag!}"/]	
+					</div>
+				</div>
+					<div class="clearfix">				
+						<div class="form-group col-lg-3">
+							<label><span>*</span>内容图片</label>
+							[#list newsBookImgs as newsBookImg]	
+							<img class="img-rounded" src="${newsBookImg.imgUrl!}" style="width: 300px;height: 200px;margin-top: 10px;" >
+							[/#list]		
+						</div>	
+					</div>				
+				<!-- <div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>创建人</label>			
+						<input type="text" class="form-control" value="${newsBook.creater!}" disabled="disabled"/>						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>创建时间</label>			
+						<input type="text" class="form-control" value="${(newsBook.createTime?string('yyyy-MM-dd'))!''}" disabled="disabled"/>						
+					</div>							
+				</div> -->
+				<!-- <div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>修改人</label>			
+						<input type="text" class="form-control" value="${newsBook.modifier!}" disabled="disabled"/>						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>修改时间</label>			
+						<input type="text" class="form-control" value="${(newsBook.modifyTime?string('yyyy-MM-dd'))!''}" disabled="disabled"/>						
+					</div>							
+				</div> -->
+				<div class="clearfix">
+					<div class="col-sm-12 col-lg-8">[@p.btn_detail ctr="newsBook"  id="${newsBook.id}" parID="id"/]</div>
+				</div>
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>

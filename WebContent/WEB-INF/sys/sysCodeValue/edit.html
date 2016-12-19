@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	$(function() {
+		$("#jvForm").bootstrapValidator({
+			feedbackIcons : {
+				valid : 'glyphicon glyphicon-ok',
+				invalid : 'glyphicon glyphicon-remove',
+				validating : 'glyphicon glyphicon-refresh'
+			},
+			fields : {
+				title : {
+					validators : {
+						notEmpty : {
+							message : '名称不能为空'
+						}
+					}
+				},
+				imgTitle : {
+					validators : {
+						notEmpty : {
+							message : '图标不能为空'
+						}
+					}
+				},
+				detail : {
+					validators : {
+						notEmpty : {
+							message : '内容不能为空'
+						}
+					}
+				}
+			},
+			submitHandler : function(validator, form, submitButton) {
+				$.web.submit("jvForm");
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>修改办事指南</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 编辑表单 -->
+			[@p.form id="jvForm" action="sysCodeValue/update.do"] <input
+				type="hidden" name="id" value="${sysCodeValue.id!}" />
+			<div class="clearfix">
+				<div class="form-group col-sm-12 col-lg-3">
+					<label>id</label>
+				</div>
+				<div class="form-group col-sm-12 col-lg-3">
+					<label>codeType</label> <input type="text" class="form-control"
+						name="codeType" value="${sysCodeValue.codeType!}" />
+				</div>
+			</div>
+			<div class="clearfix">
+				<div class="form-group col-sm-12 col-lg-3">
+					<label>code</label> <input type="text" class="form-control"
+						name="code" value="${sysCodeValue.code!}" />
+				</div>
+				<div class="form-group col-sm-12 col-lg-3">
+					<label>name</label> <input type="text" class="form-control"
+						name="name" value="${sysCodeValue.name!}" />
+				</div>
+			</div>
+			<div class="clearfix">
+				<div class="form-group col-sm-12 col-lg-3">
+					<label>orderNo</label> <input type="text" class="form-control"
+						name="orderNo" value="${sysCodeValue.orderNo!}" />
+				</div>
+				<div class="form-group col-sm-12 col-lg-3">
+					<label>flagEdit</label> <input type="text" class="form-control"
+						name="flagEdit" value="${sysCodeValue.flagEdit!}" />
+				</div>
+			</div>
+			<div class="clearfix">
+				<div class="form-group col-sm-12 col-lg-3">
+					<label>creater</label> <input type="text" class="form-control"
+						name="creater" value="${sysCodeValue.creater!}" />
+				</div>
+				<div class="form-group col-sm-12 col-lg-3">
+					<label>createTime</label> <input type="text" class="form-control"
+						name="createTime"
+						value="${(sysCodeValue.createTime?string('yyyy-MM-dd'))!''}" />
+				</div>
+			</div>
+			<div class="clearfix">
+				<div class="form-group col-sm-12 col-lg-3">
+					<label>modifier</label> <input type="text" class="form-control"
+						name="modifier" value="${sysCodeValue.modifier!}" />
+				</div>
+				<div class="form-group col-sm-12 col-lg-3">
+					<label>modifyTime</label> <input type="text" class="form-control"
+						name="modifyTime"
+						value="${(sysCodeValue.modifyTime?string('yyyy-MM-dd'))!''}" />
+				</div>
+			</div>
+			<div class="clearfix">
+				<div class="col-sm-12 col-lg-8">[@p.submit /][@p.cancel/]</div>
+			</div>
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>
+</html>

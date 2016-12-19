@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>sysCodeType信息</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 详细表单 -->
+			[@p.form id="" action=""]
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>codeType</label>			
+						<input type="text" class="form-control" value="${sysCodeType.codeType!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>codeName</label>			
+						<input type="text" class="form-control" value="${sysCodeType.codeName!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="col-sm-12 col-lg-8">[@p.btn_detail ctr="SysCodeType"  id="${sysCodeType.codeType}" parID="codeType"/]</div>
+				</div>
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>系统日志列表</h3>
+				</div>
+			</div>
+			<!-- 查询表单 -->
+			<form class="form-inline form-search" action="sysUserLog/list.do" method="post" id="tableForm">
+				<input type="hidden" name="paging.currentPage" value="${sysUserLogCriteria.paging.currentPage}" />
+				<div class="form-group">
+					<label>用户名：</label>
+					<input type="text" name="userIdQry" class="form-control" placeholder="" value="${sysUserLogCriteria.userIdQry!}" />						
+				</div>
+				[@p.search/]
+			</form>
+			<!-- 数据列表 -->
+			<div class="row">
+				<div class="col-lg-12">
+				[@p.table value=sysUserLogList paging=sysUserLogCriteria.paging;sysUserLog,i,has_next]
+								[@p.column title="用户名"]${sysUserLog.userId!}[/@p.column]
+								[@p.column title="时间"]${(sysUserLog.excTime?string('yyyy-MM-dd hh:mm:ss'))!''}[/@p.column>
+								[@p.column title="方法名称"]${sysUserLog.actName!}[/@p.column]
+								[@p.column title="URL"]${sysUserLog.excUrl!}[/@p.column]
+								[@p.column title="IP地址"]${sysUserLog.ipAddr!}[/@p.column]
+								[@p.column title="操作" style="width:100px;"] 
+									<a class="btn btn-default btn-success btn-xs" onclick="btnHref('#sysUserLog/detail.do?id=${sysUserLog.id}')">
+  										<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span> 详情
+									</a>
+								[/@p.column] 				
+				[/@p.table]
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

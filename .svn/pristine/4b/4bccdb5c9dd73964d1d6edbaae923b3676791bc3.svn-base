@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	$(function() {
+		$("#jvForm").bootstrapValidator({
+			feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+			fields: {
+								userid:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								pwd:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								name:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								sex:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								idCard:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								area:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								address:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								email:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								phone:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								avatar:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								birth:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								createtime:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								userstatus:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								usertype:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								orgid:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								creater:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								createTime:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								modifier:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								modifyTime:{
+	            	validators: {
+	                	
+	            	}
+	            },
+							},
+			submitHandler: function(validator, form, submitButton) {
+				$.web.submit("jvForm");
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>新增用户管理信息</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 新增表单 -->
+			[@p.form id="jvForm" action="sysUser/save.do"]
+				<div class="clearfix">
+					<!-- <div class="form-group col-sm-12 col-lg-3">
+						<label>userid</label>
+						<input type="text" class="form-control" name="userid"  value=""/>	
+					</div> -->
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>密码</label>
+						<input type="text" class="form-control" name="pwd"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>姓名</label>
+						<input type="text" class="form-control" name="name"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>性别</label>
+						<input type="text" class="form-control" name="sex"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>身份证号</label>
+						<input type="text" class="form-control" name="idCard"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>地区</label>
+						<input type="text" class="form-control" name="area"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>详细地址</label>
+						<input type="text" class="form-control" name="address"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>电子邮件</label>
+						<input type="text" class="form-control" name="email"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>联系电话</label>
+						<input type="text" class="form-control" name="phone"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>avatar</label>
+						<input type="text" class="form-control" name="avatar"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>birth</label>
+						<input type="text" class="form-control" name="birth"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>createtime</label>
+						<input type="text" class="form-control" name="createtime"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>userstatus</label>
+						<input type="text" class="form-control" name="userstatus"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>usertype</label>
+						<input type="text" class="form-control" name="usertype"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>orgid</label>
+						<input type="text" class="form-control" name="orgid"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>creater</label>
+						<input type="text" class="form-control" name="creater"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>createTime</label>
+						<input type="text" class="form-control" name="createTime"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>modifier</label>
+						<input type="text" class="form-control" name="modifier"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>modifyTime</label>
+						<input type="text" class="form-control" name="modifyTime"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="col-sm-12 col-lg-8">[@p.submit/][@p.cancel/]</div>
+				</div>
+				[/@p.form]
+		</div>
+	</div>
+</body>
+</html>

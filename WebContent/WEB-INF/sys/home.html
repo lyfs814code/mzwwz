@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="res/css/home.css" />
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>城市天气信息列表</h3>
+				</div>
+			</div>
+			<div class="weather" style="width: 100px; height: 100px;"></div>
+			<div class="row">
+				<div class="col-lg-12">
+				<table>
+					<tr>
+						<th>预报日期</th>
+						<th>城市编码</th>
+						<th>天气信息</th>
+						<th>温度信息</th>
+						<th>风向风力</th>
+					</tr>
+				[#list cityWeatherList as cityWeather]
+					<tr>
+						<td>${cityWeather.forecastDate!}</td>
+						<td>${cityWeather.cityCode!}</td>
+						<td>${cityWeather.weatherInfo!}</td>
+						<td>${cityWeather.temperature!}</td>
+						<td>${cityWeather.windDirection!}</td>
+					</tr>
+				[/#list]
+				</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

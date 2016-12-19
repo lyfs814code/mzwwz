@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>sysRole列表</h3>
+				</div>
+				<div class="pull-right">[@p.add obj="sysRole" /]</div>
+			</div>
+			<!-- 查询表单 -->
+			<form class="form-inline form-search" action="sysRole/list.do" method="post" id="tableForm">
+				<input type="hidden" name="paging.currentPage" value="${sysRoleCriteria.paging.currentPage}" />
+				<div class="form-group">
+					<label>查询字段：</label>
+					<input type="text" name="" class="form-control" placeholder="" value="" />						
+				</div>
+				[@p.search/]
+			</form>
+			<!-- 数据列表 -->
+			<div class="row">
+				<div class="col-lg-12">
+				[@p.table value=sysRoleList paging=sysRoleCriteria.paging;sysRole,i,has_next]
+							[@p.column title="roleId"]${sysRole.roleId!}[/@p.column]
+								[@p.column title="roleName"]${sysRole.roleName!}[/@p.column]
+								[@p.column title="description"]${sysRole.description!}[/@p.column]
+								[@p.column title="creater"]${sysRole.creater!}[/@p.column]
+								[@p.column title="createTime"]${(sysRole.createTime?string('yyyy-MM-dd'))!''}[/@p.column>
+								[@p.column title="modifier"]${sysRole.modifier!}[/@p.column]
+								[@p.column title="modifyTime"]${(sysRole.modifyTime?string('yyyy-MM-dd'))!''}[/@p.column>
+							[@p.column title="操作" style="width:130px;"] 
+						[@p.operate id="${sysRole.roleId}" parID="roleId" obj="sysRole"/]
+					[/@p.column] 				
+				[/@p.table]
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

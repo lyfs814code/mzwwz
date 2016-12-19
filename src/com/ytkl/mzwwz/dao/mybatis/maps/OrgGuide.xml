@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.OrgGuideDao">
+
+	<resultMap id="orgGuideResultMap" type="com.ytkl.mzwwz.domain.OrgGuide">
+		<result column="Id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="img_title" property="imgTitle"/>
+		<result column="source" property="source"/>
+		<result column="detail" property="detail"/>
+		<result column="publish_flag" property="publishFlag"/>
+		<result column="CREATER" property="creater"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="MODIFIER" property="modifier"/>
+		<result column="MODIFY_TIME" property="modifyTime"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ytkl.mzwwz.domain.OrgGuide">		
+		INSERT INTO org_guide
+			(Id, title, img_title, source, detail, publish_flag, CREATER, CREATE_TIME, MODIFIER, MODIFY_TIME)
+		VALUES
+			(#{id}, #{title}, #{imgTitle}, #{source}, #{detail}, #{publishFlag}, #{creater}, SYSDATE(), #{modifier}, #{modifyTime})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.OrgGuide">
+		UPDATE
+			org_guide
+		SET
+			title = #{title},
+			img_title = #{imgTitle},
+			source = #{source},
+			detail = #{detail},
+			publish_flag = #{publishFlag},
+			MODIFIER = #{modifier},
+			MODIFY_TIME = SYSDATE()
+		WHERE
+			Id = #{id}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.OrgGuide">
+		UPDATE
+			org_guide
+		<set>
+		<if test="title != null  and title != '' ">
+			title = #{title},
+		</if>
+		<if test="imgTitle != null  and imgTitle != '' ">
+			img_title = #{imgTitle},
+		</if>
+		<if test="source != null  and source != '' ">
+			source = #{source},
+		</if>
+		<if test="detail != null  and detail != '' ">
+			detail = #{detail},
+		</if>
+		<if test="publishFlag != null  and publishFlag != '' ">
+			publish_flag = #{publishFlag},
+		</if>
+		<if test="creater != null  and creater != '' ">
+			CREATER = #{creater},
+		</if>
+		<if test="createTime != null  ">
+			CREATE_TIME = #{createTime},
+		</if>
+		<if test="modifier != null  and modifier != '' ">
+			MODIFIER = #{modifier},
+		</if>
+		<if test="modifyTime != null  ">
+			MODIFY_TIME = #{modifyTime}
+		</if>
+	</set>
+		WHERE
+			Id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			org_guide
+		WHERE
+			Id = #{id}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+	    	<if test="publishFlagQry != null and publishFlagQry != ''">
+	    		and publish_flag = #{publishFlagQry}
+	    	</if>
+	    	<if test="titleQry != null and titleQry != ''">
+	    		and title LIKE CONCAT('%',#{titleQry},'%')
+	    	</if>
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		Id,
+		title,
+		img_title,
+		source,
+		detail,
+		publish_flag,
+		CREATER,
+		CREATE_TIME,
+		MODIFIER,
+		MODIFY_TIME
+  	</sql>
+	
+	
+	<select id="select" parameterType="int" resultMap="orgGuideResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			org_guide
+		WHERE
+			Id = #{id}
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.OrgGuideCriteria" resultMap="orgGuideResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			org_guide
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.OrgGuideCriteria" resultMap="orgGuideResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			org_guide
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.OrgGuideCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			org_guide
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

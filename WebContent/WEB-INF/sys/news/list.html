@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>news列表</h3>
+				</div>
+				<div class="pull-right">[@p.add obj="news" /]</div>
+			</div>
+			<!-- 查询表单 -->
+			<form class="form-inline form-search" action="news/list.do" method="post" id="tableForm">
+				<input type="hidden" name="paging.currentPage" value="${newsCriteria.paging.currentPage}" />
+				<div class="form-group">
+					<label>查询字段：</label>
+					<input type="text" name="" class="form-control" placeholder="" value="" />						
+				</div>
+				[@p.search/]
+			</form>
+			<!-- 数据列表 -->
+			<div class="row">
+				<div class="col-lg-12">
+				[@p.table value=newsList paging=newsCriteria.paging;news,i,has_next]
+							[@p.column title="id"]${news.id!}[/@p.column]
+								[@p.column title="newsType"]${news.newsType!}[/@p.column]
+								[@p.column title="title"]${news.title!}[/@p.column]
+								[@p.column title="source"]${news.source!}[/@p.column]
+								[@p.column title="detail"]${news.detail!}[/@p.column]
+								[@p.column title="publishFlag"]${news.publishFlag!}[/@p.column]
+								[@p.column title="creater"]${news.creater!}[/@p.column]
+								[@p.column title="createTime"]${(news.createTime?string('yyyy-MM-dd'))!''}[/@p.column>
+								[@p.column title="modifier"]${news.modifier!}[/@p.column]
+								[@p.column title="modifyTime"]${(news.modifyTime?string('yyyy-MM-dd'))!''}[/@p.column>
+							[@p.column title="操作" style="width:130px;"] 
+						[@p.operate id="${news.id}" parID="id" obj="news"/]
+					[/@p.column] 				
+				[/@p.table]
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.NewsBookDao">
+
+	<resultMap id="newsBookResultMap" type="com.ytkl.mzwwz.domain.NewsBook">
+		<result column="Id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="img_title" property="imgTitle"/>
+		<result column="publish_flag" property="publishFlag"/>
+		<result column="CREATER" property="creater"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="MODIFIER" property="modifier"/>
+		<result column="MODIFY_TIME" property="modifyTime"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ytkl.mzwwz.domain.NewsBook">		
+		INSERT INTO news_book
+			(Id, name, img_title, publish_flag, CREATER, CREATE_TIME, MODIFIER, MODIFY_TIME)
+		VALUES
+			(#{id}, #{name}, #{imgTitle}, #{publishFlag}, #{creater},  SYSDATE(), #{modifier}, #{modifyTime})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.NewsBook">
+		UPDATE
+			news_book
+		SET
+			name = #{name},
+			img_title = #{imgTitle},
+			publish_flag = #{publishFlag},
+			MODIFIER = #{modifier},
+			MODIFY_TIME =  SYSDATE()
+		WHERE
+			Id = #{id}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.NewsBook">
+		UPDATE
+			news_book
+		<set>
+		<if test="name != null  and name != '' ">
+			name = #{name},
+		</if>
+		<if test="imgTitle != null  and imgTitle != '' ">
+			img_title = #{imgTitle},
+		</if>
+		<if test="publishFlag != null  and publishFlag != '' ">
+			publish_flag = #{publishFlag},
+		</if>
+		<if test="creater != null  and creater != '' ">
+			CREATER = #{creater},
+		</if>
+		<if test="createTime != null  ">
+			CREATE_TIME = #{createTime},
+		</if>
+		<if test="modifier != null  and modifier != '' ">
+			MODIFIER = #{modifier},
+		</if>
+		<if test="modifyTime != null  ">
+			MODIFY_TIME = #{modifyTime}
+		</if>
+	</set>
+		WHERE
+			Id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			news_book
+		WHERE
+			Id = #{id}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+	    <if test=" nameque!=null and nameque!=''">
+	    	and name = #{nameque}
+	    </if>
+	    
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		Id,
+		name,
+		img_title,
+		publish_flag,
+		CREATER,
+		CREATE_TIME,
+		MODIFIER,
+		MODIFY_TIME
+  	</sql>
+	
+	
+	<select id="select" parameterType="int" resultMap="newsBookResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			news_book
+		WHERE
+			Id = #{id}
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.NewsBookCriteria" resultMap="newsBookResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			news_book
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.NewsBookCriteria" resultMap="newsBookResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			news_book
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.NewsBookCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			news_book
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

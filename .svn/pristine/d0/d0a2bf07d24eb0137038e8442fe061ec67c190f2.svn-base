@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>民生微网站</title>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<link rel="stylesheet"
+	href="../res/bootstrap-3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="../res/Font-Awesome-master/css/font-awesome.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script type="text/javascript" src="../res/js/jquery.min.js"></script>
+<!-- Bootstrap 核心 JavaScript 文件 -->
+<script type="text/javascript"
+	src="../res/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+	.model{
+	display: inline-block;width: 47%;margin: 2px;height: 80px;
+	}
+	.model span.glyphicon{
+	display: block;margin-bottom: 10px;
+	}
+	.list-group {
+	margin-bottom:0;
+	}
+	.panel{
+		width: 96%;margin: 10px auto;
+	}
+</style>
+</head>
+<body>
+	<div style="text-align: center;">
+		<a href="toNewList.do?newsTypeQry=1" class="btn btn-default btn-lg model" style="background-color: #d7746f;">
+			<span class="glyphicon glyphicon-user"></span>
+			<span>民政要闻</span>
+		</a>
+		<a href="toNewList.do?newsTypeQry=2" class="btn btn-default btn-lg model" style="background-color: #ff8b00;">
+			<span class="glyphicon glyphicon-envelope"></span>
+			<span>县区动态</span>
+		</a>
+		<a href="toNewList.do?newsTypeQry=3" class="btn btn-default btn-lg model" style="background-color: #bb3e3f;">
+			<span class="glyphicon glyphicon-calendar"></span>
+			<span>近期焦点</span>
+		</a>
+		<a href="toNewBookList.do" class="btn btn-default btn-lg model" style="background-color: #ffbd02;">
+			<span class="glyphicon glyphicon-book"></span>
+			<span style="">图册目录</span>
+		</a>
+		<a href="toMessage.do" class="btn btn-default btn-lg model" style="background-color: #bad0c3;width: 96%;">
+			<span class="glyphicon glyphicon-pencil"></span>
+			<span>留言板</span>
+		</a>
+	</div>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h1 class="panel-title">
+			民政要闻
+			<a href="toNewList.do?newsTypeQry=1"><span class="badge" style="float: right;display: inline-block;">更多</span></a>
+			</h1>
+		</div>
+		<div class="panel-body">
+			<ul class="list-group">
+				[#list mzywList as news]
+					<li class="list-group-item">
+						<a href="newsDetail.do?id=${news.id!}">
+							${news.title!}
+							<span class="glyphicon glyphicon-chevron-right" style="float: right;"></span>
+						</a>
+					</li>
+				[/#list]
+			</ul>
+		</div>
+	</div>
+	<div class="panel panel-info ">
+		<div class="panel-heading">
+			<h1 class="panel-title">
+			县区动态
+			<a href="toNewList.do?newsTypeQry=2"><span class="badge" style="float: right;display: inline-block;">更多</span></a>
+			</h1>
+		</div>
+		<div class="panel-body">
+			<ul class="list-group">
+				[#list xqdtList as news]
+					<li class="list-group-item">
+						<a href="newsDetail.do?id=${news.id!}">
+							${news.title!}
+							<span class="glyphicon glyphicon-chevron-right" style="float: right;"></span>
+						</a>
+					</li>
+				[/#list]
+			</ul>
+		</div>
+	</div>
+	<div class="panel panel-info ">
+		<div class="panel-heading">
+			<h1 class="panel-title">
+			近期焦点
+			<a href="toNewList.do?newsTypeQry=3"><span class="badge" style="float: right;display: inline-block;">更多</span></a>
+			</h1>
+		</div>
+		<div class="panel-body">
+			<ul class="list-group">
+				[#list jqjdList as news]
+					<li class="list-group-item">
+						<a href="newsDetail.do?id=${news.id!}">
+							${news.title!}
+							<span class="glyphicon glyphicon-chevron-right" style="float: right;"></span>
+						</a>
+					</li>
+				[/#list]
+			</ul>
+		</div>
+	</div>
+	<div class="panel panel-info ">
+		<div class="panel-heading">
+			<h1 class="panel-title">
+			图册目录
+			<a href="toNewBookList.do"><span class="badge" style="float: right;display: inline-block;">更多</span></a>
+			</h1>
+		</div>
+		<div class="panel-body">
+			<ul class="list-group">
+				[#list bookList as newsBook]
+					<li class="list-group-item">
+						<a href="newsBookDetail.do?id=${newsBook.id!}">
+							<img alt="" src="${newsBook.imgTitle!}" width="50px" height="50px">
+							[#if newsBook.name?length gt 10]${newsBook.name?substring(0,10)}...[#else]${newsBook.name!''}[/#if]
+							<span class="glyphicon glyphicon-chevron-right" style="float: right;margin-top: 15px;"></span>
+						</a>
+					</li>
+				[/#list]
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

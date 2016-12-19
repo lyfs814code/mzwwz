@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.SysRoleDao">
+
+	<resultMap id="sysRoleResultMap" type="com.ytkl.mzwwz.domain.SysRole">
+		<result column="ROLE_ID" property="roleId"/>
+		<result column="ROLE_NAME" property="roleName"/>
+		<result column="DESCRIPtiON" property="description"/>
+		<result column="CREATER" property="creater"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="MODIFIER" property="modifier"/>
+		<result column="MODIFY_TIME" property="modifyTime"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="roleId" parameterType="com.ytkl.mzwwz.domain.SysRole">		
+		INSERT INTO sys_role
+			(ROLE_ID, ROLE_NAME, DESCRIPtiON, CREATER, CREATE_TIME, MODIFIER, MODIFY_TIME)
+		VALUES
+			(#{roleId}, #{roleName}, #{description}, #{creater}, #{createTime}, #{modifier}, #{modifyTime})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.SysRole">
+		UPDATE
+			sys_role
+		SET
+			ROLE_NAME = #{roleName},
+			DESCRIPtiON = #{description},
+			CREATER = #{creater},
+			CREATE_TIME = #{createTime},
+			MODIFIER = #{modifier},
+			MODIFY_TIME = #{modifyTime}
+		WHERE
+			ROLE_ID = #{roleId}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.SysRole">
+		UPDATE
+			sys_role
+		<set>
+		<if test="roleName != null  and roleName != '' ">
+			ROLE_NAME = #{roleName},
+		</if>
+		<if test="description != null  and description != '' ">
+			DESCRIPtiON = #{description},
+		</if>
+		<if test="creater != null  and creater != '' ">
+			CREATER = #{creater},
+		</if>
+		<if test="createTime != null  ">
+			CREATE_TIME = #{createTime},
+		</if>
+		<if test="modifier != null  and modifier != '' ">
+			MODIFIER = #{modifier},
+		</if>
+		<if test="modifyTime != null  ">
+			MODIFY_TIME = #{modifyTime}
+		</if>
+	</set>
+		WHERE
+			ROLE_ID = #{roleId}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			sys_role
+		WHERE
+			ROLE_ID = #{roleId}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		ROLE_ID,
+		ROLE_NAME,
+		DESCRIPtiON,
+		CREATER,
+		CREATE_TIME,
+		MODIFIER,
+		MODIFY_TIME
+  	</sql>
+	
+	
+	<select id="select" parameterType="int" resultMap="sysRoleResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_role
+		WHERE
+			ROLE_ID = #{roleId}
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.SysRoleCriteria" resultMap="sysRoleResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_role
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			ROLE_ID ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.SysRoleCriteria" resultMap="sysRoleResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_role
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			ROLE_ID ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.SysRoleCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			sys_role
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

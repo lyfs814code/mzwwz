@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>民生微网站</title>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<link rel="stylesheet"
+	href="../res/bootstrap-3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="../res/Font-Awesome-master/css/font-awesome.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script type="text/javascript" src="../res/js/jquery.min.js"></script>
+<!-- Bootstrap 核心 JavaScript 文件 -->
+<script type="text/javascript"
+	src="../res/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+	.fixed-btn {
+	    position: fixed;
+	    right: 1%;
+	    bottom: 5%;
+	    width: 40px;
+	    border: 1px solid #eee;
+	    background-color: white;
+	    font-size: 24px;
+	    z-index: 1040;
+	    -webkit-backface-visibility: hidden;
+	}
+</style>
+</head>
+<body>
+	<div class="panel panel-primary " style="width: 100%;">
+		<div class="panel-heading">
+			<h1 class="panel-title">[@p.constant_value code_type="NEWS_TYPE" value="${newsCriteria.newsTypeQry!}"/]</h1>
+		</div>
+		<div class="panel-body">
+			<ul class="list-group">
+				[#list newsList as news]
+					<li class="list-group-item">
+						<a href="newsDetail.do?id=${news.id!}">
+							${news.title!}
+							<span class="glyphicon glyphicon-chevron-right" style="float: right;"></span>
+						</a>
+					</li>
+				[/#list]
+			</ul>
+		</div>
+	</div>
+	<div style="width:40px; height:40px;position: fixed;left: 2px;bottom: 2px;border-radius:20px;background-color: red;text-align: center;padding: 7px;">
+		<a href="toMzdt.do"><span class="glyphicon glyphicon-home" style="color: #fff; font-size: 25px;"></span></a>
+	</div>
+</body>
+</html>

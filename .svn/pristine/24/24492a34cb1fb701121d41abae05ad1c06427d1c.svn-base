@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	$(function() {
+		$("#jvForm").bootstrapValidator({
+			feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+			fields: {
+								userid:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								pwd:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								name:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								sex:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								idCard:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								area:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								address:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								email:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								phone:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								avatar:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								birth:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								createtime:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								userstatus:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								usertype:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								orgid:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								creater:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								createTime:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								modifier:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								modifyTime:{
+	            	validators: {
+	                	
+	            	}
+	            },
+							},
+			submitHandler: function(validator, form, submitButton) {
+				$.web.submit("jvForm");
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>sysUser信息修改</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 编辑表单 -->
+			[@p.form id="jvForm" action="sysUser/update.do"]
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>userid</label>				
+						<input type="text" class="form-control" name="userid"  value="${sysUser.userid!}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>pwd</label>				
+						<input type="text" class="form-control" name="pwd"  value="${sysUser.pwd!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>name</label>				
+						<input type="text" class="form-control" name="name"  value="${sysUser.name!}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>sex</label>				
+						<input type="text" class="form-control" name="sex"  value="${sysUser.sex!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>idCard</label>				
+						<input type="text" class="form-control" name="idCard"  value="${sysUser.idCard!}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>area</label>				
+						<input type="text" class="form-control" name="area"  value="${sysUser.area!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>address</label>				
+						<input type="text" class="form-control" name="address"  value="${sysUser.address!}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>email</label>				
+						<input type="text" class="form-control" name="email"  value="${sysUser.email!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>phone</label>				
+						<input type="text" class="form-control" name="phone"  value="${sysUser.phone!}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>avatar</label>				
+						<input type="text" class="form-control" name="avatar"  value="${sysUser.avatar!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>birth</label>				
+						<input type="text" class="form-control" name="birth"  value="${(sysUser.birth?string('yyyy-MM-dd'))!''}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>createtime</label>				
+						<input type="text" class="form-control" name="createtime"  value="${(sysUser.createtime?string('yyyy-MM-dd'))!''}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>userstatus</label>				
+						<input type="text" class="form-control" name="userstatus"  value="${sysUser.userstatus!}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>usertype</label>				
+						<input type="text" class="form-control" name="usertype"  value="${sysUser.usertype!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>orgid</label>				
+						<input type="text" class="form-control" name="orgid"  value="${sysUser.orgid!}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>creater</label>				
+						<input type="text" class="form-control" name="creater"  value="${sysUser.creater!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>createTime</label>				
+						<input type="text" class="form-control" name="createTime"  value="${(sysUser.createTime?string('yyyy-MM-dd'))!''}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>modifier</label>				
+						<input type="text" class="form-control" name="modifier"  value="${sysUser.modifier!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>modifyTime</label>				
+						<input type="text" class="form-control" name="modifyTime"  value="${(sysUser.modifyTime?string('yyyy-MM-dd'))!''}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+				<div class="col-sm-12 col-lg-8">[@p.submit /][@p.cancel/]</div>
+			</div>
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>
+</html>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<appgen-mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://appgen.sourceforge.net/appgen-mapping http://appgen.sourceforge.net/schema/appgen-mapping-1.0.0.xsd" xmlns="http://appgen.sourceforge.net/appgen-mapping">
+    <connectionInformation>
+        <databaseName>mzwwz11</databaseName>
+        <databaseSchema/>
+    </connectionInformation>
+    <generationInformation>
+        <outputDir>C:\Users\鎴锋檽搴璡Desktop\code</outputDir>
+        <packageName>com.ytkl.mzwwz</packageName>
+    </generationInformation>
+    <entityList>
+        <entity baseName="commonPara" create="true" tableName="common_para">
+            <fieldList>
+                <field columnLength="20" columnName="CODE" columnType="VARCHAR" create="true" fieldName="code" fieldType="java.lang.String" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="20" columnName="NAME" columnType="VARCHAR" create="true" fieldName="name" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="65535" columnName="DETAIL" columnType="TEXT" create="true" fieldName="detail" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="CREATER" columnType="VARCHAR" create="true" fieldName="creater" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="CREATE_TIME" columnType="TIMESTAMP" create="true" fieldName="createTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="MODIFIER" columnType="VARCHAR" create="true" fieldName="modifier" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="MODIFY_TIME" columnType="TIMESTAMP" create="true" fieldName="modifyTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="linkInfo" create="true" tableName="link_info">
+            <fieldList>
+                <field columnLength="10" columnName="Id" columnType="INT" create="true" fieldName="id" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="6" columnName="link_level" columnType="VARCHAR" create="true" fieldName="linkLevel" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="link_name" columnType="VARCHAR" create="true" fieldName="linkName" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="phone" columnType="VARCHAR" create="true" fieldName="phone" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="1" columnName="publish_flag" columnType="CHAR" create="true" fieldName="publishFlag" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="CREATER" columnType="VARCHAR" create="true" fieldName="creater" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="CREATE_TIME" columnType="TIMESTAMP" create="true" fieldName="createTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="MODIFIER" columnType="VARCHAR" create="true" fieldName="modifier" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="MODIFY_TIME" columnType="TIMESTAMP" create="true" fieldName="modifyTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="message" create="true" tableName="message">
+            <fieldList>
+                <field columnLength="10" columnName="Id" columnType="INT" create="true" fieldName="id" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="30" columnName="name" columnType="VARCHAR" create="true" fieldName="name" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="11" columnName="phone" columnType="VARCHAR" create="true" fieldName="phone" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="32" columnName="email" columnType="VARCHAR" create="true" fieldName="email" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="255" columnName="detail" columnType="VARCHAR" create="true" fieldName="detail" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="CREATE_TIME" columnType="TIMESTAMP" create="true" fieldName="createTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="1" columnName="reply_flag" columnType="CHAR" create="true" fieldName="replyFlag" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="messageApply" create="true" tableName="message_apply">
+            <fieldList>
+                <field columnLength="10" columnName="Id" columnType="INT" create="true" fieldName="id" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="10" columnName="message_id" columnType="INT" create="true" fieldName="messageId" fieldType="int" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="255" columnName="detail" columnType="VARCHAR" create="true" fieldName="detail" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="CREATER" columnType="VARCHAR" create="true" fieldName="creater" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="CREATE_TIME" columnType="TIMESTAMP" create="true" fieldName="createTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="MODIFIER" columnType="VARCHAR" create="true" fieldName="modifier" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="MODIFY_TIME" columnType="TIMESTAMP" create="true" fieldName="modifyTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="news" create="true" tableName="news">
+            <fieldList>
+                <field columnLength="10" columnName="Id" columnType="INT" create="true" fieldName="id" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="6" columnName="news_type" columnType="VARCHAR" create="true" fieldName="newsType" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="title" columnType="VARCHAR" create="true" fieldName="title" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="source" columnType="VARCHAR" create="true" fieldName="source" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="65535" columnName="detail" columnType="TEXT" create="true" fieldName="detail" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="1" columnName="publish_flag" columnType="CHAR" create="true" fieldName="publishFlag" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="CREATER" columnType="VARCHAR" create="true" fieldName="creater" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="CREATE_TIME" columnType="TIMESTAMP" create="true" fieldName="createTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="MODIFIER" columnType="VARCHAR" create="true" fieldName="modifier" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="MODIFY_TIME" columnType="TIMESTAMP" create="true" fieldName="modifyTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="newsBook" create="true" tableName="news_book">
+            <fieldList>
+                <field columnLength="10" columnName="Id" columnType="INT" create="true" fieldName="id" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="32" columnName="name" columnType="VARCHAR" create="true" fieldName="name" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="255" columnName="img_title" columnType="VARCHAR" create="true" fieldName="imgTitle" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="1" columnName="publish_flag" columnType="CHAR" create="true" fieldName="publishFlag" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="CREATER" columnType="VARCHAR" create="true" fieldName="creater" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="CREATE_TIME" columnType="TIMESTAMP" create="true" fieldName="createTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="MODIFIER" columnType="VARCHAR" create="true" fieldName="modifier" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="MODIFY_TIME" columnType="TIMESTAMP" create="true" fieldName="modifyTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="newsBookImg" create="true" tableName="news_book_img">
+            <fieldList>
+                <field columnLength="10" columnName="Id" columnType="INT" create="true" fieldName="id" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="10" columnName="book_id" columnType="INT" create="true" fieldName="bookId" fieldType="int" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="255" columnName="img_url" columnType="VARCHAR" create="true" fieldName="imgUrl" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="orgGuide" create="true" tableName="org_guide">
+            <fieldList>
+                <field columnLength="10" columnName="Id" columnType="INT" create="true" fieldName="id" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="32" columnName="title" columnType="VARCHAR" create="true" fieldName="title" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="255" columnName="img_title" columnType="VARCHAR" create="true" fieldName="imgTitle" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="source" columnType="VARCHAR" create="true" fieldName="source" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="65535" columnName="detail" columnType="TEXT" create="true" fieldName="detail" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="1" columnName="publish_flag" columnType="CHAR" create="true" fieldName="publishFlag" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="CREATER" columnType="VARCHAR" create="true" fieldName="creater" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="CREATE_TIME" columnType="TIMESTAMP" create="true" fieldName="createTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="MODIFIER" columnType="VARCHAR" create="true" fieldName="modifier" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="MODIFY_TIME" columnType="TIMESTAMP" create="true" fieldName="modifyTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="sysCodeType" create="true" tableName="sys_code_type">
+            <fieldList>
+                <field columnLength="64" columnName="CODE_TYPE" columnType="VARCHAR" create="true" fieldName="codeType" fieldType="java.lang.String" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="32" columnName="CODE_NAME" columnType="VARCHAR" create="true" fieldName="codeName" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="sysCodeValue" create="true" tableName="sys_code_value">
+            <fieldList>
+                <field columnLength="10" columnName="ID" columnType="INT" create="true" fieldName="id" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="64" columnName="CODE_TYPE" columnType="VARCHAR" create="true" fieldName="codeType" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="64" columnName="CODE" columnType="VARCHAR" create="true" fieldName="code" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="NAME" columnType="VARCHAR" create="true" fieldName="name" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="10" columnName="ORDER_NO" columnType="INT" create="true" fieldName="orderNo" fieldType="int" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="1" columnName="FLAG_EDIT" columnType="CHAR" create="true" fieldName="flagEdit" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="CREATER" columnType="VARCHAR" create="true" fieldName="creater" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="CREATE_TIME" columnType="TIMESTAMP" create="true" fieldName="createTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="MODIFIER" columnType="VARCHAR" create="true" fieldName="modifier" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="MODIFY_TIME" columnType="TIMESTAMP" create="true" fieldName="modifyTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="sysMenu" create="true" tableName="sys_menu">
+            <fieldList>
+                <field columnLength="10" columnName="MENU_ID" columnType="INT" create="true" fieldName="menuId" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="20" columnName="MENU_NAME" columnType="VARCHAR" create="true" fieldName="menuName" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="255" columnName="MENU_URL" columnType="VARCHAR" create="true" fieldName="menuUrl" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="255" columnName="MENU_IMG" columnType="VARCHAR" create="true" fieldName="menuImg" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="10" columnName="ORDER_NO" columnType="INT" create="true" fieldName="orderNo" fieldType="int" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="10" columnName="PRE_ID" columnType="INT" create="true" fieldName="preId" fieldType="int" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="IS_PARENT" columnType="VARCHAR" create="true" fieldName="isParent" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="1" columnName="IS_USING" columnType="CHAR" create="true" fieldName="isUsing" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="6" columnName="MENU_TYPE" columnType="VARCHAR" create="true" fieldName="menuType" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="MENU_TREE" columnType="VARCHAR" create="true" fieldName="menuTree" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="sysPara" create="true" tableName="sys_para">
+            <fieldList>
+                <field columnLength="10" columnName="Id" columnType="INT" create="true" fieldName="id" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="20" columnName="PARA_CODE" columnType="VARCHAR" create="true" fieldName="paraCode" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="255" columnName="PARA_NAME" columnType="VARCHAR" create="true" fieldName="paraName" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="PARA_VALUE" columnType="VARCHAR" create="true" fieldName="paraValue" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="MODIFIER" columnType="VARCHAR" create="true" fieldName="modifier" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="MODIFY_TIME" columnType="TIMESTAMP" create="true" fieldName="modifyTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="sysRole" create="true" tableName="sys_role">
+            <fieldList>
+                <field columnLength="10" columnName="ROLE_ID" columnType="INT" create="true" fieldName="roleId" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="20" columnName="ROLE_NAME" columnType="VARCHAR" create="true" fieldName="roleName" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="255" columnName="DESCRIPtiON" columnType="VARCHAR" create="true" fieldName="description" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="CREATER" columnType="VARCHAR" create="true" fieldName="creater" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="CREATE_TIME" columnType="TIMESTAMP" create="true" fieldName="createTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="MODIFIER" columnType="VARCHAR" create="true" fieldName="modifier" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="MODIFY_TIME" columnType="TIMESTAMP" create="true" fieldName="modifyTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="sysRoleMenu" create="true" tableName="sys_role_menu">
+            <fieldList>
+                <field columnLength="10" columnName="Id" columnType="INT" create="true" fieldName="id" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="10" columnName="ROLE_ID" columnType="INT" create="true" fieldName="roleId" fieldType="int" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="10" columnName="MENU_ID" columnType="INT" create="true" fieldName="menuId" fieldType="int" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="512" columnName="BTN_IDS" columnType="VARCHAR" create="true" fieldName="btnIds" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="sysUser" create="true" tableName="sys_user">
+            <fieldList>
+                <field columnLength="20" columnName="USERID" columnType="VARCHAR" create="true" fieldName="userid" fieldType="java.lang.String" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="64" columnName="PWD" columnType="VARCHAR" create="true" fieldName="pwd" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="64" columnName="NAME" columnType="VARCHAR" create="true" fieldName="name" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="1" columnName="SEX" columnType="CHAR" create="true" fieldName="sex" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="18" columnName="ID_CARD" columnType="VARCHAR" create="true" fieldName="idCard" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="AREA" columnType="VARCHAR" create="true" fieldName="area" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="128" columnName="ADDRESS" columnType="VARCHAR" create="true" fieldName="address" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="64" columnName="EMAIL" columnType="VARCHAR" create="true" fieldName="email" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="PHONE" columnType="VARCHAR" create="true" fieldName="phone" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="255" columnName="Avatar" columnType="VARCHAR" create="true" fieldName="avatar" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="10" columnName="Birth" columnType="DATE" create="true" fieldName="birth" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="10" columnName="CreateTime" columnType="DATE" create="true" fieldName="createtime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="6" columnName="UserStatus" columnType="VARCHAR" create="true" fieldName="userstatus" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="1" columnName="UserType" columnType="CHAR" create="true" fieldName="usertype" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="10" columnName="OrgId" columnType="INT" create="true" fieldName="orgid" fieldType="int" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="CREATER" columnType="VARCHAR" create="true" fieldName="creater" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="CREATE_TIME" columnType="TIMESTAMP" create="true" fieldName="createTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="MODIFIER" columnType="VARCHAR" create="true" fieldName="modifier" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="MODIFY_TIME" columnType="TIMESTAMP" create="true" fieldName="modifyTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="sysUserLog" create="true" tableName="sys_user_log">
+            <fieldList>
+                <field columnLength="10" columnName="Id" columnType="INT" create="true" fieldName="id" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="20" columnName="USER_ID" columnType="VARCHAR" create="true" fieldName="userId" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="19" columnName="EXC_TIME" columnType="TIMESTAMP" create="true" fieldName="excTime" fieldType="java.util.Date" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="channel" columnType="VARCHAR" create="true" fieldName="channel" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="act_name" columnType="VARCHAR" create="true" fieldName="actName" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="32" columnName="action" columnType="VARCHAR" create="true" fieldName="action" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="255" columnName="exc_url" columnType="VARCHAR" create="true" fieldName="excUrl" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="20" columnName="ip_addr" columnType="VARCHAR" create="true" fieldName="ipAddr" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="255" columnName="params" columnType="VARCHAR" create="true" fieldName="params" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="255" columnName="errMsg" columnType="VARCHAR" create="true" fieldName="errmsg" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+        <entity baseName="sysUserRole" create="true" tableName="sys_user_role">
+            <fieldList>
+                <field columnLength="10" columnName="Id" columnType="INT" create="true" fieldName="id" fieldType="int" lob="false" nullable="false" pkPosition="1"/>
+                <field columnLength="255" columnName="USERID" columnType="VARCHAR" create="true" fieldName="userid" fieldType="java.lang.String" lob="false" nullable="true" pkPosition="0"/>
+                <field columnLength="10" columnName="ROLE_ID" columnType="INT" create="true" fieldName="roleId" fieldType="int" lob="false" nullable="true" pkPosition="0"/>
+            </fieldList>
+        </entity>
+    </entityList>
+</appgen-mapping>

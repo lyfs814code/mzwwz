@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.LinkInfoDao">
+
+	<resultMap id="linkInfoResultMap" type="com.ytkl.mzwwz.domain.LinkInfo">
+		<result column="Id" property="id"/>
+		<result column="link_level" property="linkLevel"/>
+		<result column="link_name" property="linkName"/>
+		<result column="phone" property="phone"/>
+		<result column="publish_flag" property="publishFlag"/>
+		<result column="CREATER" property="creater"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="MODIFIER" property="modifier"/>
+		<result column="MODIFY_TIME" property="modifyTime"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ytkl.mzwwz.domain.LinkInfo">		
+		INSERT INTO link_info
+			(Id, link_level, link_name, phone, publish_flag, CREATER, CREATE_TIME, MODIFIER, MODIFY_TIME)
+		VALUES
+			(#{id}, #{linkLevel}, #{linkName}, #{phone}, #{publishFlag}, #{creater}, SYSDATE(), #{modifier}, #{modifyTime})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.LinkInfo">
+		UPDATE
+			link_info
+		SET
+			link_level = #{linkLevel},
+			link_name = #{linkName},
+			phone = #{phone},
+			publish_flag = #{publishFlag},
+			MODIFIER = #{modifier},
+			MODIFY_TIME = SYSDATE()
+		WHERE
+			Id = #{id}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.LinkInfo">
+		UPDATE
+			link_info
+		<set>
+		<if test="linkLevel != null  and linkLevel != '' ">
+			link_level = #{linkLevel},
+		</if>
+		<if test="linkName != null  and linkName != '' ">
+			link_name = #{linkName},
+		</if>
+		<if test="phone != null  and phone != '' ">
+			phone = #{phone},
+		</if>
+		<if test="publishFlag != null  and publishFlag != '' ">
+			publish_flag = #{publishFlag},
+		</if>
+		<if test="creater != null  and creater != '' ">
+			CREATER = #{creater},
+		</if>
+		<if test="createTime != null  ">
+			CREATE_TIME = #{createTime},
+		</if>
+		<if test="modifier != null  and modifier != '' ">
+			MODIFIER = #{modifier},
+		</if>
+		<if test="modifyTime != null  ">
+			MODIFY_TIME = #{modifyTime}
+		</if>
+	</set>
+		WHERE
+			Id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			link_info
+		WHERE
+			Id = #{id}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+	    	<if test="linkLevelQry != null and linkLevelQry != ''">
+	    		and link_level = #{linkLevelQry}
+	    	</if>
+	    	<if test="publishFlagQry != null and publishFlagQry != ''">
+	    		and publish_flag = #{publishFlagQry}
+	    	</if>
+	    	<if test="linkNameQry != null and linkNameQry != ''">
+	    		and link_name LIKE CONCAT('%',#{linkNameQry},'%')
+	    	</if>
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		Id,
+		link_level,
+		link_name,
+		phone,
+		publish_flag,
+		CREATER,
+		CREATE_TIME,
+		MODIFIER,
+		MODIFY_TIME
+  	</sql>
+	
+	
+	<select id="select" parameterType="int" resultMap="linkInfoResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			link_info
+		WHERE
+			Id = #{id}
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.LinkInfoCriteria" resultMap="linkInfoResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			link_info
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.LinkInfoCriteria" resultMap="linkInfoResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			link_info
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.LinkInfoCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			link_info
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

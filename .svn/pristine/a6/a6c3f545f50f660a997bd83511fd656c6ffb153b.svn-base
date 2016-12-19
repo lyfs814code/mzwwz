@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.MessageDao">
+
+	<resultMap id="messageResultMap" type="com.ytkl.mzwwz.domain.Message">
+		<result column="Id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="phone" property="phone"/>
+		<result column="email" property="email"/>
+		<result column="detail" property="detail"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="reply_flag" property="replyFlag"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ytkl.mzwwz.domain.Message">		
+		INSERT INTO message
+			(name, phone, email, detail, CREATE_TIME, reply_flag)
+		VALUES
+			(#{name}, #{phone}, #{email}, #{detail}, SYSDATE(), #{replyFlag})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.Message">
+		UPDATE
+			message
+		SET
+			name = #{name},
+			phone = #{phone},
+			email = #{email},
+			detail = #{detail},
+			reply_flag = #{replyFlag}
+		WHERE
+			Id = #{id}
+	</update>
+	<update id="updateState" parameterType="map">
+		UPDATE
+			message
+		SET
+			reply_flag = #{state}
+		WHERE
+			Id = #{id}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.Message">
+		UPDATE
+			message
+		<set>
+		<if test="name != null  and name != '' ">
+			name = #{name},
+		</if>
+		<if test="phone != null  and phone != '' ">
+			phone = #{phone},
+		</if>
+		<if test="email != null  and email != '' ">
+			email = #{email},
+		</if>
+		<if test="detail != null  and detail != '' ">
+			detail = #{detail},
+		</if>
+		<if test="createTime != null  ">
+			CREATE_TIME = #{createTime},
+		</if>
+		<if test="replyFlag != null  and replyFlag != '' ">
+			reply_flag = #{replyFlag}
+		</if>
+	</set>
+		WHERE
+			Id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			message
+		WHERE
+			Id = #{id}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+	    <if test="name!=null and name!=''">
+	     and	name=#{name}
+	    </if>
+	    
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		Id,
+		name,
+		phone,
+		email,
+		detail,
+		CREATE_TIME,
+		reply_flag
+  	</sql>
+	
+	
+	<select id="select" parameterType="int" resultMap="messageResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			message
+		WHERE
+			Id = #{id} 
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.MessageCriteria" resultMap="messageResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			message
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.MessageCriteria" resultMap="messageResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			message
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.MessageCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			message
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.CityInfoDao">
+
+	<resultMap id="cityInfoResultMap" type="com.ytkl.mzwwz.domain.CityInfo">
+		<result column="CityInfoId" property="cityInfoId"/>
+		<result column="CityCode" property="cityCode"/>
+		<result column="ProvinceName" property="provinceName"/>
+		<result column="CityName" property="cityName"/>
+		<result column="CountyName" property="countyName"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="cityInfoId" parameterType="com.ytkl.mzwwz.domain.CityInfo">		
+		INSERT INTO cityinfo
+			(CityInfoId, CityCode, ProvinceName, CityName, CountyName)
+		VALUES
+			(#{cityInfoId}, #{cityCode}, #{provinceName}, #{cityName}, #{countyName})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.CityInfo">
+		UPDATE
+			cityinfo
+		SET
+			CityCode = #{cityCode},
+			ProvinceName = #{provinceName},
+			CityName = #{cityName},
+			CountyName = #{countyName}
+		WHERE
+			CityInfoId = #{cityInfoId}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.CityInfo">
+		UPDATE
+			cityinfo
+		<set>
+		<if test="cityCode != null  and cityCode != '' ">
+			CityCode = #{cityCode},
+		</if>
+		<if test="provinceName != null  and provinceName != '' ">
+			ProvinceName = #{provinceName},
+		</if>
+		<if test="cityName != null  and cityName != '' ">
+			CityName = #{cityName},
+		</if>
+		<if test="countyName != null  and countyName != '' ">
+			CountyName = #{countyName}
+		</if>
+	</set>
+		WHERE
+			CityInfoId = #{cityInfoId}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			cityinfo
+		WHERE
+			CityInfoId = #{cityInfoId}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		CityInfoId,
+		CityCode,
+		ProvinceName,
+		CityName,
+		CountyName
+  	</sql>
+	
+	
+	<select id="select" parameterType="int" resultMap="cityInfoResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			cityinfo
+		WHERE
+			CityInfoId = #{cityInfoId}
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.CityInfoCriteria" resultMap="cityInfoResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			cityinfo
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			CityInfoId ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.CityInfoCriteria" resultMap="cityInfoResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			cityinfo
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			CityInfoId ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.CityInfoCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			cityinfo
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

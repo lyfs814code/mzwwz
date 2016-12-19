@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>sysMenu列表</h3>
+				</div>
+				<div class="pull-right">[@p.add obj="sysMenu" /]</div>
+			</div>
+			<!-- 查询表单 -->
+			<form class="form-inline form-search" action="sysMenu/list.do" method="post" id="tableForm">
+				<input type="hidden" name="paging.currentPage" value="${sysMenuCriteria.paging.currentPage}" />
+				<div class="form-group">
+					<label>查询字段：</label>
+					<input type="text" name="" class="form-control" placeholder="" value="" />						
+				</div>
+				[@p.search/]
+			</form>
+			<!-- 数据列表 -->
+			<div class="row">
+				<div class="col-lg-12">
+				[@p.table value=sysMenuList paging=sysMenuCriteria.paging;sysMenu,i,has_next]
+							[@p.column title="menuId"]${sysMenu.menuId!}[/@p.column]
+								[@p.column title="menuName"]${sysMenu.menuName!}[/@p.column]
+								[@p.column title="menuUrl"]${sysMenu.menuUrl!}[/@p.column]
+								[@p.column title="menuImg"]${sysMenu.menuImg!}[/@p.column]
+								[@p.column title="orderNo"]${sysMenu.orderNo!}[/@p.column]
+								[@p.column title="preId"]${sysMenu.preId!}[/@p.column]
+								[@p.column title="isParent"]${sysMenu.isParent!}[/@p.column]
+								[@p.column title="isUsing"]${sysMenu.isUsing!}[/@p.column]
+								[@p.column title="menuType"]${sysMenu.menuType!}[/@p.column]
+								[@p.column title="menuTree"]${sysMenu.menuTree!}[/@p.column]
+							[@p.column title="操作" style="width:130px;"] 
+						[@p.operate id="${sysMenu.menuId}" parID="menuId" obj="sysMenu"/]
+					[/@p.column] 				
+				[/@p.table]
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

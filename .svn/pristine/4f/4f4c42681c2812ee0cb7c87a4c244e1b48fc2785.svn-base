@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<style type="text/css">
+	td {
+
+      white-space:nowrap;overflow:hidden;text-overflow: ellipsis;
+
+}
+</style>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>近期焦点列表</h3>
+				</div>
+				<div class="pull-right">[@p.add obj="newJqjd" /]</div>
+			</div>
+			<!-- 查询表单 -->
+			<form class="form-inline form-search" action="newJqjd/list.do" method="post" id="tableForm">
+				<input type="hidden" name="paging.currentPage" value="${newsCriteria.paging.currentPage}" />
+				<div class="form-group">
+					<label>标题：</label>
+					<input type="text" name="titleQue" class="form-control" placeholder="" value="${newsCriteria.titleQue!}" />			
+				</div>
+				[@p.search/]
+			</form>	
+			<!-- 数据列表 -->
+			<div class="row">
+				<div class="col-lg-12">
+				[@p.table value=newsList paging=newsCriteria.paging;news,i,has_next]
+								[@p.column title="标题"]
+								<a onclick="btnHref('#newJqjd/detail.do?id=${news.id}')">
+								${news.title!}
+								</a>
+								[/@p.column]
+								[@p.column title="来源"]${news.source!}[/@p.column]
+								[@p.column title="是否发布"]
+								[@p.constant_value code_type="IS_PUBLISH" value="${news.publishFlag!}"/]
+								[/@p.column]
+							[@p.column title="操作" style="width:130px;"] 
+						[@p.operate id="${news.id}" parID="id" obj="newJqjd"/]
+					[/@p.column] 				
+				[/@p.table]
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

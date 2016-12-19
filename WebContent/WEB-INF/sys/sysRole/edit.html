@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	$(function() {
+		$("#jvForm").bootstrapValidator({
+			feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+			fields: {
+								roleId:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								roleName:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								description:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								creater:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								createTime:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								modifier:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								modifyTime:{
+	            	validators: {
+	                	
+	            	}
+	            },
+							},
+			submitHandler: function(validator, form, submitButton) {
+				$.web.submit("jvForm");
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>sysRole信息修改</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 编辑表单 -->
+			[@p.form id="jvForm" action="sysRole/update.do"]
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>roleId</label>				
+						<input type="text" class="form-control" name="roleId"  value="${sysRole.roleId!}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>roleName</label>				
+						<input type="text" class="form-control" name="roleName"  value="${sysRole.roleName!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>description</label>				
+						<input type="text" class="form-control" name="description"  value="${sysRole.description!}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>creater</label>				
+						<input type="text" class="form-control" name="creater"  value="${sysRole.creater!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>createTime</label>				
+						<input type="text" class="form-control" name="createTime"  value="${(sysRole.createTime?string('yyyy-MM-dd'))!''}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>modifier</label>				
+						<input type="text" class="form-control" name="modifier"  value="${sysRole.modifier!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>modifyTime</label>				
+						<input type="text" class="form-control" name="modifyTime"  value="${(sysRole.modifyTime?string('yyyy-MM-dd'))!''}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+				<div class="col-sm-12 col-lg-8">[@p.submit /][@p.cancel/]</div>
+			</div>
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>
+</html>

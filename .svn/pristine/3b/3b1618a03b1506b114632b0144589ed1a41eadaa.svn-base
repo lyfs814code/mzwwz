@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.MessageApplyDao">
+
+	<resultMap id="messageApplyResultMap" type="com.ytkl.mzwwz.domain.MessageApply">
+		<result column="Id" property="id"/>
+		<result column="message_id" property="messageId"/>
+		<result column="detail" property="detail"/>
+		<result column="CREATER" property="creater"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="MODIFIER" property="modifier"/>
+		<result column="MODIFY_TIME" property="modifyTime"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ytkl.mzwwz.domain.MessageApply">		
+		INSERT INTO message_apply 
+			(Id, message_id, detail, CREATER, CREATE_TIME, MODIFIER, MODIFY_TIME)
+		VALUES
+			(#{id}, #{messageId}, #{detail}, #{creater}, SYSDATE(), #{modifier}, #{modifyTime})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.MessageApply">
+		UPDATE
+			message_apply
+		SET
+			message_id = #{messageId},
+			detail = #{detail},
+			CREATER = #{creater},
+			CREATE_TIME = #{createTime},
+			MODIFIER = #{modifier},
+			MODIFY_TIME = #{modifyTime}
+		WHERE
+			Id = #{id}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.MessageApply">
+		UPDATE
+			message_apply
+		<set>
+		<if test="messageId != null  ">
+			message_id = #{messageId},
+		</if>
+		<if test="detail != null  and detail != '' ">
+			detail = #{detail},
+		</if>
+		<if test="creater != null  and creater != '' ">
+			CREATER = #{creater},
+		</if>
+		<if test="createTime != null  ">
+			CREATE_TIME = #{createTime},
+		</if>
+		<if test="modifier != null  and modifier != '' ">
+			MODIFIER = #{modifier},
+		</if>
+		<if test="modifyTime != null  ">
+			MODIFY_TIME = #{modifyTime}
+		</if>
+	</set>
+		WHERE
+			Id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			message_apply
+		WHERE
+			Id = #{id}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+	    <if test="message_id!=null and message_id!=''">
+	    	and a.message_id = #{message_id}
+	    </if>
+	    <if test="nameque!=null and nameque!=''">
+	    	and m.name = #{nameque}
+	    </if>
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		a.Id,
+		a.message_id,
+		a.detail,
+		a.MODIFIER,
+		a.CREATER,
+		a.CREATE_TIME,
+		a.MODIFIER,
+		a.MODIFY_TIME
+  	</sql>
+	
+	
+	<select id="select" parameterType="int" resultMap="messageApplyResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			message_apply a
+		WHERE
+			a.Id = #{id}
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.MessageApplyCriteria" resultMap="messageApplyResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			message_apply a
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			a.Id ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.MessageApplyCriteria" resultMap="messageApplyResultMap">
+		SELECT
+		<include refid="Base_Column_List" /> ,m.name
+		FROM
+			message_apply a
+		LEFT JOIN message m ON m.Id = a.message_id 
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			a.Id ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.MessageApplyCriteria" resultType="int">
+		SELECT
+			COUNT(*) ,m.name
+		FROM
+			message_apply a
+		LEFT JOIN message m ON m.Id = a.message_id 
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

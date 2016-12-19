@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	$(function() {
+		$("#jvForm").bootstrapValidator({
+			feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+			fields: {
+								menuId:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								menuName:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								menuUrl:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								menuImg:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								orderNo:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								preId:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								isParent:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								isUsing:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								menuType:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								menuTree:{
+	            	validators: {
+	                	
+	            	}
+	            },
+							},
+			submitHandler: function(validator, form, submitButton) {
+				$.web.submit("jvForm");
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>新增sysMenu信息</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 新增表单 -->
+			[@p.form id="jvForm" action="sysMenu/save.do"]
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>menuId</label>
+						<input type="text" class="form-control" name="menuId"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>menuName</label>
+						<input type="text" class="form-control" name="menuName"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>menuUrl</label>
+						<input type="text" class="form-control" name="menuUrl"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>menuImg</label>
+						<input type="text" class="form-control" name="menuImg"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>orderNo</label>
+						<input type="text" class="form-control" name="orderNo"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>preId</label>
+						<input type="text" class="form-control" name="preId"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>isParent</label>
+						<input type="text" class="form-control" name="isParent"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>isUsing</label>
+						<input type="text" class="form-control" name="isUsing"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>menuType</label>
+						<input type="text" class="form-control" name="menuType"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>menuTree</label>
+						<input type="text" class="form-control" name="menuTree"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="col-sm-12 col-lg-8">[@p.submit/][@p.cancel/]</div>
+				</div>
+				[/@p.form]
+		</div>
+	</div>
+</body>
+</html>

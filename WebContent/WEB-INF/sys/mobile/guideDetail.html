@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>民生微网站</title>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<link rel="stylesheet"
+	href="../res/bootstrap-3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="../res/Font-Awesome-master/css/font-awesome.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script type="text/javascript" src="../res/js/jquery.min.js"></script>
+<!-- Bootstrap 核心 JavaScript 文件 -->
+<script type="text/javascript"
+	src="../res/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<div class="media">
+				<a class="media-left" href="javascript:;">
+					<img src="${orgGuide.imgTitle!}" style="width: 50px;height: 50px;">
+				</a>
+				<div class="media-body">
+					<h3 class="media-heading">${orgGuide.title!}</h3>
+				</div>
+			</div>
+			<div class="media">
+				<div>
+					<span>来源：</span>
+					<span>${orgGuide.source!}</span>
+				</div>
+				<div>
+					<span>时间：</span>
+					<span>${orgGuide.createTime?string("yyyy-MM-dd")}</span>
+				</div>
+			</div>
+		</div>
+		<div style="">
+			${orgGuide.detail!}
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.SysMenuDao">
+
+	<resultMap id="sysMenuResultMap" type="com.ytkl.mzwwz.domain.SysMenu">
+		<result column="MENU_ID" property="menuId"/>
+		<result column="MENU_NAME" property="menuName"/>
+		<result column="MENU_URL" property="menuUrl"/>
+		<result column="MENU_IMG" property="menuImg"/>
+		<result column="ORDER_NO" property="orderNo"/>
+		<result column="PRE_ID" property="preId"/>
+		<result column="IS_PARENT" property="isParent"/>
+		<result column="IS_USING" property="isUsing"/>
+		<result column="MENU_TYPE" property="menuType"/>
+		<result column="MENU_TREE" property="menuTree"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="menuId" parameterType="com.ytkl.mzwwz.domain.SysMenu">		
+		INSERT INTO sys_menu
+			(MENU_ID, MENU_NAME, MENU_URL, MENU_IMG, ORDER_NO, PRE_ID, IS_PARENT, IS_USING, MENU_TYPE, MENU_TREE)
+		VALUES
+			(#{menuId}, #{menuName}, #{menuUrl}, #{menuImg}, #{orderNo}, #{preId}, #{isParent}, #{isUsing}, #{menuType}, #{menuTree})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.SysMenu">
+		UPDATE
+			sys_menu
+		SET
+			MENU_NAME = #{menuName},
+			MENU_URL = #{menuUrl},
+			MENU_IMG = #{menuImg},
+			ORDER_NO = #{orderNo},
+			PRE_ID = #{preId},
+			IS_PARENT = #{isParent},
+			IS_USING = #{isUsing},
+			MENU_TYPE = #{menuType},
+			MENU_TREE = #{menuTree}
+		WHERE
+			MENU_ID = #{menuId}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.SysMenu">
+		UPDATE
+			sys_menu
+		<set>
+		<if test="menuName != null  and menuName != '' ">
+			MENU_NAME = #{menuName},
+		</if>
+		<if test="menuUrl != null  and menuUrl != '' ">
+			MENU_URL = #{menuUrl},
+		</if>
+		<if test="menuImg != null  and menuImg != '' ">
+			MENU_IMG = #{menuImg},
+		</if>
+		<if test="orderNo != null  ">
+			ORDER_NO = #{orderNo},
+		</if>
+		<if test="preId != null  ">
+			PRE_ID = #{preId},
+		</if>
+		<if test="isParent != null  and isParent != '' ">
+			IS_PARENT = #{isParent},
+		</if>
+		<if test="isUsing != null  and isUsing != '' ">
+			IS_USING = #{isUsing},
+		</if>
+		<if test="menuType != null  and menuType != '' ">
+			MENU_TYPE = #{menuType},
+		</if>
+		<if test="menuTree != null  and menuTree != '' ">
+			MENU_TREE = #{menuTree}
+		</if>
+	</set>
+		WHERE
+			MENU_ID = #{menuId}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			sys_menu
+		WHERE
+			MENU_ID = #{menuId}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		MENU_ID,
+		MENU_NAME,
+		MENU_URL,
+		MENU_IMG,
+		ORDER_NO,
+		PRE_ID,
+		IS_PARENT,
+		IS_USING,
+		MENU_TYPE,
+		MENU_TREE
+  	</sql>
+	
+	
+	<select id="select" parameterType="int" resultMap="sysMenuResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_menu
+		WHERE
+			MENU_ID = #{menuId}
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.SysMenuCriteria" resultMap="sysMenuResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_menu
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			MENU_ID ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.SysMenuCriteria" resultMap="sysMenuResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_menu
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			MENU_ID ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.SysMenuCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			sys_menu
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

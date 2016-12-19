@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>sysPara列表</h3>
+				</div>
+				<div class="pull-right">[@p.add obj="sysPara" /]</div>
+			</div>
+			<!-- 查询表单 -->
+			<form class="form-inline form-search" action="sysPara/list.do" method="post" id="tableForm">
+				<input type="hidden" name="paging.currentPage" value="${sysParaCriteria.paging.currentPage}" />
+				<div class="form-group">
+					<label>查询字段：</label>
+					<input type="text" name="" class="form-control" placeholder="" value="" />						
+				</div>
+				[@p.search/]
+			</form>
+			<!-- 数据列表 -->
+			<div class="row">
+				<div class="col-lg-12">
+				[@p.table value=sysParaList paging=sysParaCriteria.paging;sysPara,i,has_next]
+							[@p.column title="id"]${sysPara.id!}[/@p.column]
+								[@p.column title="paraCode"]${sysPara.paraCode!}[/@p.column]
+								[@p.column title="paraName"]${sysPara.paraName!}[/@p.column]
+								[@p.column title="paraValue"]${sysPara.paraValue!}[/@p.column]
+								[@p.column title="modifier"]${sysPara.modifier!}[/@p.column]
+								[@p.column title="modifyTime"]${(sysPara.modifyTime?string('yyyy-MM-dd'))!''}[/@p.column>
+							[@p.column title="操作" style="width:130px;"] 
+						[@p.operate id="${sysPara.id}" parID="id" obj="sysPara"/]
+					[/@p.column] 				
+				[/@p.table]
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

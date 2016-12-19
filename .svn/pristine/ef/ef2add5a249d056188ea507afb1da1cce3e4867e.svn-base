@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>办事指南信息</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 详细表单 -->
+			[@p.form id="" action=""]
+				<div class="col-lg-8">
+					<div class="clearfix">
+						<div class="form-group col-lg-12">	
+							<label>名称</label>			
+							<input type="text" class="form-control" value="${orgGuide.title!}"  disabled="disabled"/>						
+						</div>							
+					</div>
+					<div class="clearfix">
+						<div class="form-group col-lg-6">	
+							<label>来源</label>			
+							<input type="text" class="form-control" value="${orgGuide.source!}"  disabled="disabled"/>				
+						</div>		
+						<div class="form-group col-lg-6">	
+							<label>发布状态</label>	
+							<div class="form-control" style="border: none;">
+								[@p.constant_radio code_type="IS_PUBLISH" id="publishFlag" name="publishFlag" value="${orgGuide.publishFlag!}" disabled="disabled"/]	
+							</div>		
+						</div>						
+					</div>
+					<div class="clearfix">
+						<div class="form-group col-lg-12">	
+							<label>内容</label>
+							<div class="form-control" style="height: auto;">${orgGuide.detail!}</div>
+						</div>							
+					</div>
+					<div class="clearfix">
+						<div class="form-group col-lg-6">	
+							<label>录入人员</label>			
+							<input type="text" class="form-control" value="${orgGuide.creater!}"  disabled="disabled"/>				
+						</div>							
+						<div class="form-group col-lg-6">	
+							<label>新增时间</label>			
+							<input type="text" class="form-control" value="${(orgGuide.createTime?string('yyyy-MM-dd HH:mm:ss'))!''}"  disabled="disabled"/>				
+						</div>							
+					</div>
+					<div class="clearfix">
+						<div class="form-group col-lg-6">	
+							<label>修改人员</label>			
+							<input type="text" class="form-control" value="${orgGuide.modifier!}"  disabled="disabled"/>				
+						</div>							
+						<div class="form-group col-lg-6">	
+							<label>修改时间</label>			
+							<input type="text" class="form-control" value="${(orgGuide.modifyTime?string('yyyy-MM-dd HH:mm:ss'))!''}"  disabled="disabled"/>				
+						</div>							
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<label>图标</label> 
+					[@p.upload_image name="imgTitle" src="${orgGuide.imgTitle!}" item="1" value="${orgGuide.imgTitle!}" isDetail="true"/]
+				</div>
+				<div class="clearfix">
+					<div class="col-sm-12 col-lg-8">
+					[@p.btn_detail ctr="orgGuide"  id="${orgGuide.id}" parID="id"/]</div>
+				</div>
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>

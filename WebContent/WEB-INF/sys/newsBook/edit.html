@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	$(function() {
+		$("#jvForm").bootstrapValidator({
+			feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+			fields: {
+								id:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								name:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								imgTitle:{
+	            	validators: {
+	                	notEmpty: {
+	                        message: '图片不能为空'
+	                    }
+	            	}
+	            },
+								publishFlag:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								creater:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								createTime:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								modifier:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								modifyTime:{
+	            	validators: {
+	                	
+	            	}
+	            },
+							},
+			submitHandler: function(validator, form, submitButton) {
+				$.web.submit("jvForm");
+			}
+		});
+	});
+	var n=${newsBookImgs?size+1};
+		function add_img(){
+		n++;
+		 var addImg ="<div class=\"file-input\">";
+			addImg+="<div class=\"file-preview \">";
+			addImg+="<div class=\" file-preview-zone\">";
+			addImg+="<img id=\"file-preview-img"+n+"\" class=\"file-preview-zone-img\" src=\"res/images/img_priview.png\">";
+			addImg+="</div>";
+			addImg+="</div>";
+			addImg+="<div class=\"input-group\">";
+			addImg+=	 "<div tabindex=\"500\" class=\"form-control\">";
+			addImg+=		"<div id=\"file-input-name"+n+"\" class=\"file-input-name\" title=\"\"></div>";
+			addImg+=			"</div>";
+			addImg+=		"<div class=\"input-group-btn\">";
+			addImg+=			     "  <div tabindex=\"500\" class=\"btn btn-primary btn-file\">";
+			addImg+=			       		"<i class=\"glyphicon glyphicon-folder-open\"></i>&nbsp;  <span class=\"hidden-xs\">选择图标</span>";
+			addImg+=			       		"<input id=\"file-upload-file"+n+"\" name=\"file-upload-file"+n+"\" class=\"form-control\" type=\"file\">";
+			addImg+=			   " <input name=\"imgurls\" id=\"file-upload-name"+n+"\" value=\"\" data-bv-field=\"imgurls\" type=\"hidden\"><i style=\"display: none;\" class=\"form-control-feedback\" data-bv-icon-for=\"imgurls\"></i>";
+			addImg+=			       "</div>";
+			addImg+=			       "<small class=\"help-block\" id=\"msg_imgTitle\"></small>";
+			addImg+=			  " </div>";
+			addImg+=			"</div>";
+			addImg+=			"<script type=\"text/javascript\">";
+			addImg+=			 	"$(function () {";
+			addImg+=					"$(\"#file-upload-file"+n+"\").uploadPreview({ Img: \"file-preview-img"+n+"\", Width:\"100%\",Height:\"100%\" });";
+			addImg+=					"$(\"#file-upload-file"+n+"\").on(\"change\",null,function(){";
+			addImg+=				"var _obj = $(\"#file-upload-file"+n+"\").clone(true);";
+			addImg+=				"$.web.ajaxFileUpload("+n+");";
+			addImg+=						"$(\"#file-upload-file"+n+"\").replaceWith(_obj);";
+			addImg+=					"});";
+			addImg+=				"});";
+			addImg+=			 "<\/script>";
+			addImg+=			" <\/div>"; 
+		$("#tpxw_tb").append(addImg);
+		
+		}
+</script>
+<script type="text/javascript">
+	function ajaxDelete(obj){
+  		$(obj).prev().remove();
+  		$(obj).remove();
+	}
+</script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>图片新闻修改</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 编辑表单 -->
+			[@p.form id="jvForm" action="newsBook/update.do"]
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>名称</label>
+						<input type="hidden" class="form-control" name="id"  value="${newsBook.id!}"/>				
+						<input type="text" class="form-control" name="name"  value="${newsBook.name!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+											
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>发布状态</label>				
+						[@p.constant_radio code_type="IS_PUBLISH" id="publishFlag" name="publishFlag" value="${newsBook.publishFlag!}"/]
+					</div>							
+				</div>
+				
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>封面图标</label>				
+						[@p.upload_image name="imgTitle" src="${newsBook.imgTitle!}" item="1" value="${newsBook.imgTitle!}" /]
+					</div>	
+				</div>
+				
+				<div class="clearfix">
+					<div id="tpxw_tb" class="form-group col-sm-12 col-lg-3">
+						<label>图标</label>	
+						[#list newsBookImgs as newsBookImg]		
+							
+						[@p.upload_image name="imgurls" src="${newsBookImg.imgUrl!}" item="${newsBookImg_index?if_exists+2}" value="${newsBookImg.imgUrl!}" /]
+						
+						<button type="button" id="btn_submit" onclick="ajaxDelete(this);">删除</button>
+						[/#list]
+					</div>
+				</div>
+				<div class="form-group col-sm-12 col-lg-3">	
+						<button type="button" id="btn_submit" onclick="add_img();">添加</button>
+				</div>
+		  <!-- <div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>修改人</label>				
+						<input type="text" class="form-control" name="modifier"  value="${newsBook.modifier!}"/>
+					</div>							
+				</div> -->
+			<div class="clearfix">
+				<div class="col-sm-12 col-lg-8">[@p.submit /][@p.cancel/]</div>
+			</div>
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>
+</html>

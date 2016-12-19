@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>回复列表</h3>
+				</div>
+				<!-- <div class="pull-right">[@p.add obj="messageApply" /]</div> -->
+			</div>
+			<!-- 查询表单 -->
+			<form class="form-inline form-search" action="messageApply/list.do" method="post" id="tableForm">
+				<input type="hidden" name="paging.currentPage" value="${messageApplyCriteria.paging.currentPage}" />
+				<div class="form-group">
+					<label>留言人查询：</label>
+					<input type="text" name="nameque" class="form-control" placeholder="" value="" />						
+				</div>
+				[@p.search/]
+			</form>
+			<!-- 数据列表 -->
+			<div class="row">
+				<div class="col-lg-12">
+				[@p.table value=messageApplyList paging=messageApplyCriteria.paging;messageApply,i,has_next]
+								[@p.column title="留言人姓名"]
+								 <a onclick="btnHref('#/messageApply/detail.do?id=${messageApply.id}')">
+								${messageApply.name!}
+								</a>
+								[/@p.column]
+								[@p.column title="回复内容"]${messageApply.detail!}[/@p.column]
+							[@p.column title="操作" style="width:130px;"] 
+						[@p.operate id="${messageApply.id}" parID="id" obj="messageApply"checkDel="false"/]
+					[/@p.column] 				
+				[/@p.table]
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

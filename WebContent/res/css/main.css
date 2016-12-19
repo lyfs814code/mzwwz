@@ -1,0 +1,501 @@
+/*
+顶部导航
+*/
+.navbar {
+	background-color: #191c2c;
+}
+
+.navbar-default .navbar-brand {
+	color: #2ec0f6;
+	font-size: 24px;
+}
+
+.navbar .navbar-nav>li a {
+	color: #2ec0f6;
+}
+
+.navbar .navbar-nav>li.active {
+	border-top: 2px solid #2ec0f6;
+	font-weight: 200;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus,
+	.navbar-default .navbar-nav>.active>a:hover {
+	background-color: #23305a;
+	color: #fff;
+}
+
+.navbar-default .navbar-nav>li a:hover {
+	background-color: #23305a;
+	color: #fff;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus,
+	.navbar-default .navbar-nav>.open>a:hover {
+	color: #fff;
+	background-color: #23305a;
+}
+
+.dropdown .dropdown-menu {
+	background-color: #191c2c;
+}
+
+.navbar-nav>li>.dropdown-menu {
+	margin-top: 2px;
+}
+
+.dropdown-menu p {
+	color: #fff;
+	padding: 3px 20px;
+}
+
+/*
+地图工具栏 -->
+*/
+.map-layerbox {
+	position: absolute;
+	z-index: 1;
+}
+
+.map-show-list {
+	padding: 14px 0 13px;
+	background: #fff;
+	border-radius: 4px;
+	height: 18px;
+}
+
+.map-show-list  .item:first-child, #layerbox_item i+.item {
+	border-left: 0;
+}
+
+.map-show-list  .item {
+	float: left;
+	height: 18px;
+	padding: 0 12px;
+	font-size: 12px;
+	border-left: 1px #dbdee2 dashed;
+	vertical-align: middle;
+	cursor: pointer;
+	overflow: visible;
+	zoom: 1;
+	color: #5f6477;
+}
+
+.marker-container .detail-info {
+	display: none
+}
+
+.marker-container:hover .detail-info {
+	display: block
+}
+
+.ui-autocomplete {
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: default;
+}
+
+.ui-autocomplete-input {
+	display: inline-block;
+	padding: 4px;
+	font-size: 13px;
+	line-height: 18px;
+	color: #808080;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.map-site {
+	font-size: 12px;
+}
+
+.map-site h4 {
+	border-bottom: 1px solid #ccc;
+	height: 30px;
+	margin: 0;
+	line-height: 30px;
+}
+
+.map-site h4  a {
+	font-size: 12px;
+	margin-left: 6px;
+}
+
+.map-site-info .form-group {
+	margin: 5px;
+}
+
+.map-site-info .control-label {
+	padding: 0;
+}
+
+.page-header {
+	padding: 0;
+	margin: 0 0 10px;
+}
+
+.page-header div.pull-right {
+	margin-top: -40px;
+}
+
+.sidebar .sidebar-nav.navbar-collapse {
+	padding-right: 0;
+	padding-left: 0;
+	font-size: 13px;
+	color: #557386;
+	display: block;
+	background: #f0f6fa;
+	border-left: solid 2px #c4d5df;
+}
+
+}
+.sidebar ul li {
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.sidebar ul li a.active {
+	background-color: #eee;
+}
+
+.sidebar .arrow {
+	float: right;
+}
+
+.sidebar .fa.arrow:before {
+	content: "\f104";
+}
+
+.sidebar .active>a>.fa.arrow:before {
+	content: "\f107";
+}
+
+.fa.select:before {
+	content: "\f096"
+}
+
+.select>a>.fa.select:before {
+	content: "\f046";
+}
+
+.sidebar .nav-second-level li, .sidebar .nav-third-level li {
+	border-bottom: 0 !important;
+}
+
+.sidebar .nav-second-level li a, .sidebar .nav-box {
+	padding-left: 37px;
+}
+
+.sidebar .nav-item .active a, .nav-second-level li.select a {
+	color: #fff;
+	background: #169ef4;
+	text-decoration: none;
+	border-left: solid 1px #0c91e5;
+}
+
+.sidebar img {
+	width: 30px;
+	height: 30px;
+	margin-left: -10px;
+}
+
+.bg-blue {
+	background-color: #23305a;
+	color: #2ec0f6;
+	margin-bottom: 10px;
+}
+
+.bg-blue, .bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger {
+	padding: 10px;
+}
+
+/*portfolio block*/
+.portfolio-block {
+	background: #f7f7f7;
+	margin-bottom: 15px;
+	overflow: auto;
+}
+
+.portfolio-block  img {
+	width: 80px;
+	height: 80px;
+}
+
+.portfolio-block .span5 {
+	overflow: hidden;
+}
+
+/*portfolio text*/
+.portfolio-text {
+	overflow: hidden;
+}
+
+.portfolio-text h4 {
+	color: #2ec0f6;
+}
+
+.portfolio-text img {
+	float: left;
+	margin-right: 15px;
+}
+
+.portfolio-text .portfolio-text-info {
+	overflow: hidden;
+}
+
+/*portfolio button*/
+.portfolio-btn a {
+	height: 80px;
+	display: block;
+	padding: 28px 0;
+	background: #ddd !important;
+	display: block;
+}
+
+.portfolio-btn a:hover {
+	background: #23305a !important;
+}
+
+.portfolio-btn span {
+	color: #2ec0f6;
+	font-size: 22px;
+	font-weight: 200;
+}
+
+/*portfolio info*/
+.portfolio-info {
+	float: left;
+	color: #616161;
+	font-size: 12px;
+	padding: 12px 25px;
+	margin-bottom: 5px;
+	text-transform: uppercase;
+}
+
+.portfolio-info span {
+	color: #16a1f2;
+	display: block;
+	font-size: 20px;
+	margin-top: 5px;
+	font-weight: 200;
+	text-transform: uppercase;
+}
+
+.console-title {
+	padding: 4px 0px;
+	margin-bottom: 10px;
+}
+
+.console-title .nav-pills {
+	display: inline-block;
+	vertical-align: bottom
+}
+
+.console-title .nav-pills li a, .console-title .nav-pills li a:focus,
+	.console-title .nav-pills li button, .console-title .nav-pills li button:focus
+	{
+	padding: 6px 6px
+}
+
+.console-title h1, .console-title h2, .console-title h3, .console-title h4,
+	.console-title h5, .console-title h6 {
+	display: inline-block;
+	text-indent: 8px;
+	border-left: 2px solid #88B7E0;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-right: 8px
+}
+
+.console-title h1 {
+	margin-top: 0px;
+	margin-bottom: 0px
+}
+
+.console-title h2 {
+	margin-top: 2px;
+	margin-bottom: 2px
+}
+
+.console-title h3 {
+	margin-top: 4px;
+	margin-bottom: 4px
+}
+
+.console-title h4 {
+	margin-top: 6px;
+	margin-bottom: 6px
+}
+
+.console-title h5 {
+	margin-top: 8px;
+	margin-bottom: 8px
+}
+
+.console-title-border {
+	border-bottom: 1px solid #DDD
+}
+
+.nav-pills li a, .nav-pills li a:focus, .nav-pills li button, .nav-pills li button:focus
+	{
+	padding: 6px 12px;
+	border-radius: 0px;
+	border: 1px solid #D9DEE4;
+	background-color: #D9DEE4;
+	color: #666;
+	line-height: 20px;
+	height: 32px;
+	margin-left: 2px
+}
+
+.nav-pills li a:hover, .nav-pills li a:focus:hover, .nav-pills li button:hover,
+	.nav-pills li button:focus:hover {
+	border: 1px solid #D9DEE4;
+	background-color: #DCE2E7;
+	color: #444
+}
+
+.nav-pills li.active a, .nav-pills li.active a:hover, .nav-pills li.active a:focus,
+	.nav-pills li.active button, .nav-pills li.active button:hover,
+	.nav-pills li.active button:focus {
+	border: 1px solid #546478;
+	background-color: #546478;
+	color: #FFFFFF
+}
+
+.fa-1 {
+	font-size: 1em;
+}
+
+.fa-1_4 {
+	font-size: 1.4em;
+}
+
+.fa-2 {
+	font-size: 2em;
+}
+
+.fa-3 {
+	font-size: 3em;
+}
+
+.fa-4 {
+	font-size: 4em;
+}
+
+.fa-5 {
+	font-size: 4em;
+}
+
+.input_file {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 140px;
+	height: 39px;
+	font-size: 100px; /* 增大不同浏览器的可点击区域 */
+	opacity: 0; /* 实现的关键点 */
+	filter: alpha(opacity = 0); /* 兼容IE */
+}
+
+.progress-success .bar {
+	background-color: #62c462;
+	height: 100%;
+	font-size: 12px;
+	color: #fff;
+	text-align: center;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);;
+	background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%,
+		transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%,
+		rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	font-size: 12px;
+	color: #fff;
+	text-align: center;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	height: 100%;
+}
+
+form label span {
+	color: red;
+}
+
+.form-edit label {
+	font-size: 12px;
+}
+
+.form-search label {
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.form-detail  label {
+	width: 120px;
+	text-align: right;
+}
+
+#menu li a {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+/*图片上传*/
+.file-input {
+	
+}
+
+.file-preview {
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	padding: 5px;
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.file-preview-zone {
+	border: 1px dashed #aaa;
+	border-radius: 4px;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+	margin: 12px 15px 12px 12px;
+	padding: 5px;
+}
+
+.file-preview-zone-img {
+	width: 100%;
+}
+
+.file-preview-zone-title {
+	color: #aaa;
+	font-size: 1.6em;
+	padding: 85px 10px;
+	cursor: default;
+}
+
+.file-input-name {
+	display: inline-block;
+	overflow: hidden;
+	height: 20px;
+	word-break: break-all;
+}
+
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	text-align: right;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	background: none repeat scroll 0 0 transparent;
+	cursor: inherit;
+	display: block;
+}
+
+.edui-default .edui-editor-iframeholder {
+	min-height: 300px;
+}

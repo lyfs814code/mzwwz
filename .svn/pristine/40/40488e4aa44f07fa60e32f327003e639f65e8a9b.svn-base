@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties>
+    	<property name="dialect" value="MYSQL"/>
+  	</properties>
+  	<plugins>
+    	<plugin interceptor="com.ytkl.mzwwz.util.PaginationInterceptor"/>
+  	</plugins>
+  	<mappers>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/CommonPara.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/LinkInfo.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/Message.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/MessageApply.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/News.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/NewsBook.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/NewsBookImg.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/OrgGuide.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/SysCodeType.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/SysCodeValue.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/SysMenu.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/SysPara.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/SysRole.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/SysRoleMenu.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/SysUser.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/SysUserLog.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/SysUserRole.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/NewMzyw.xml"/>
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/NewXqdt.xml"/>	
+		<mapper resource="com/ytkl/mzwwz/dao/mybatis/maps/NewJqjd.xml"/>		
+	</mappers>
+</configuration>

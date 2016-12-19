@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	$(function() {
+		$("#jvForm").bootstrapValidator({
+			feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+			fields: {
+								name:{
+	            	validators: {
+	                	notEmpty: {
+	                        message: '名称不能为空'
+	                    }
+	            	}
+	            },
+								imgTitle:{
+	            	validators: {
+	                	notEmpty: {
+	                        message: '图片不能为空'
+	                    }
+	            	}
+	            },
+	            },
+			submitHandler: function(validator, form, submitButton) {
+				$.web.submit("jvForm");
+			}
+		});
+	});
+
+		function add_img(){
+		
+		var addImg="[@p.upload_image2 name='imgTitle' src='' item='2' value=''/]";
+		$("#tpxw").append(addImg);
+		
+		}
+</script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>新增图片新闻</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 新增表单 -->
+			[@p.form id="jvForm" action="newsBook/save.do"]
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>名称</label>
+						<input type="text" class="form-control" name="name"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>发布状态</label>
+						[@p.constant_radio code_type="IS_PUBLISH" id="publishFlag" name="publishFlag" value="1"/]	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>标题图片</label>
+						[@p.upload_image name="imgTitle" src="" item="1" value="" /]
+						
+					</div>
+				</div>
+					<label>图片新闻</label>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3" id="tpxw">
+					</div>
+				</div>
+					<button type="button" id="btn_submit" onclick="add_img();">添加</button>
+				<div class="clearfix">
+					<div class="col-sm-12 col-lg-8">[@p.submit/][@p.cancel/]</div>
+				</div>
+				[/@p.form]
+				
+		</div>
+	</div>
+</body>
+</html>

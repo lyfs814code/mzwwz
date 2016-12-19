@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.NewsBookImgDao">
+
+	<resultMap id="newsBookImgResultMap" type="com.ytkl.mzwwz.domain.NewsBookImg">
+		<result column="Id" property="id"/>
+		<result column="book_id" property="bookId"/>
+		<result column="img_url" property="imgUrl"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ytkl.mzwwz.domain.NewsBookImg">		
+		INSERT INTO news_book_img
+			(Id, book_id, img_url)
+		VALUES
+			(#{id}, #{bookId}, #{imgUrl})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.NewsBookImg">
+		UPDATE
+			news_book_img
+		SET
+			book_id = #{bookId},
+			img_url = #{imgUrl}
+		WHERE
+			Id = #{id}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.NewsBookImg">
+		UPDATE
+			news_book_img
+		<set>
+		<if test="bookId != null  ">
+			book_id = #{bookId},
+		</if>
+		<if test="imgUrl != null  and imgUrl != '' ">
+			img_url = #{imgUrl}
+		</if>
+	</set>
+		WHERE
+			Id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			news_book_img
+		WHERE
+			Id = #{id}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+	    	<if test="newBookId != null and newBookId != null">
+	    		and book_id = #{newBookId}
+	    	</if>
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		Id,
+		book_id,
+		img_url
+  	</sql>
+	
+	
+	<select id="select" parameterType="int" resultMap="newsBookImgResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			news_book_img
+		WHERE
+			Id = #{id}
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.NewsBookImgCriteria" resultMap="newsBookImgResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			news_book_img
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.NewsBookImgCriteria" resultMap="newsBookImgResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			news_book_img
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.NewsBookImgCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			news_book_img
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

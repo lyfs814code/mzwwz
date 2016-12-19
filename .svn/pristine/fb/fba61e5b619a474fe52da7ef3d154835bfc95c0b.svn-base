@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.SysUserDao">
+
+	<resultMap id="sysUserResultMap" type="com.ytkl.mzwwz.domain.SysUser">
+		<result column="USERID" property="userid"/>
+		<result column="PWD" property="pwd"/>
+		<result column="NAME" property="name"/>
+		<result column="SEX" property="sex"/>
+		<result column="ID_CARD" property="idCard"/>
+		<result column="AREA" property="area"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="EMAIL" property="email"/>
+		<result column="PHONE" property="phone"/>
+		<result column="Avatar" property="avatar"/>
+		<result column="Birth" property="birth"/>
+		<result column="CreateTime" property="createtime"/>
+		<result column="UserStatus" property="userstatus"/>
+		<result column="UserType" property="usertype"/>
+		<result column="OrgId" property="orgid"/>
+		<result column="CREATER" property="creater"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="MODIFIER" property="modifier"/>
+		<result column="MODIFY_TIME" property="modifyTime"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="userid" parameterType="com.ytkl.mzwwz.domain.SysUser">		
+		INSERT INTO sys_user
+			(USERID, PWD, NAME, SEX, ID_CARD, AREA, ADDRESS, EMAIL, PHONE, Avatar, Birth, CreateTime, UserStatus, UserType, OrgId, CREATER, CREATE_TIME, MODIFIER, MODIFY_TIME)
+		VALUES
+			(#{userid}, #{pwd}, #{name}, #{sex}, #{idCard}, #{area}, #{address}, #{email}, #{phone}, #{avatar}, #{birth}, #{createtime}, #{userstatus}, #{usertype}, #{orgid}, #{creater}, #{createTime}, #{modifier}, #{modifyTime})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.SysUser">
+		UPDATE
+			sys_user
+		SET
+			PWD = #{pwd},
+			NAME = #{name},
+			SEX = #{sex},
+			ID_CARD = #{idCard},
+			AREA = #{area},
+			ADDRESS = #{address},
+			EMAIL = #{email},
+			PHONE = #{phone},
+			Avatar = #{avatar},
+			Birth = #{birth},
+			CreateTime = #{createtime},
+			UserStatus = #{userstatus},
+			UserType = #{usertype},
+			OrgId = #{orgid},
+			CREATER = #{creater},
+			CREATE_TIME = #{createTime},
+			MODIFIER = #{modifier},
+			MODIFY_TIME = #{modifyTime}
+		WHERE
+			USERID = #{userid}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.SysUser">
+		UPDATE
+			sys_user
+		<set>
+		<if test="pwd != null  and pwd != '' ">
+			PWD = #{pwd},
+		</if>
+		<if test="name != null  and name != '' ">
+			NAME = #{name},
+		</if>
+		<if test="sex != null  and sex != '' ">
+			SEX = #{sex},
+		</if>
+		<if test="idCard != null  and idCard != '' ">
+			ID_CARD = #{idCard},
+		</if>
+		<if test="area != null  and area != '' ">
+			AREA = #{area},
+		</if>
+		<if test="address != null  and address != '' ">
+			ADDRESS = #{address},
+		</if>
+		<if test="email != null  and email != '' ">
+			EMAIL = #{email},
+		</if>
+		<if test="phone != null  and phone != '' ">
+			PHONE = #{phone},
+		</if>
+		<if test="avatar != null  and avatar != '' ">
+			Avatar = #{avatar},
+		</if>
+		<if test="birth != null  ">
+			Birth = #{birth},
+		</if>
+		<if test="createtime != null  ">
+			CreateTime = #{createtime},
+		</if>
+		<if test="userstatus != null  and userstatus != '' ">
+			UserStatus = #{userstatus},
+		</if>
+		<if test="usertype != null  and usertype != '' ">
+			UserType = #{usertype},
+		</if>
+		<if test="orgid != null  ">
+			OrgId = #{orgid},
+		</if>
+		<if test="creater != null  and creater != '' ">
+			CREATER = #{creater},
+		</if>
+		<if test="createTime != null  ">
+			CREATE_TIME = #{createTime},
+		</if>
+		<if test="modifier != null  and modifier != '' ">
+			MODIFIER = #{modifier},
+		</if>
+		<if test="modifyTime != null  ">
+			MODIFY_TIME = #{modifyTime}
+		</if>
+	</set>
+		WHERE
+			USERID = #{userid}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		DELETE FROM
+			sys_user
+		WHERE
+			USERID = #{userid}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		USERID,
+		PWD,
+		NAME,
+		SEX,
+		ID_CARD,
+		AREA,
+		ADDRESS,
+		EMAIL,
+		PHONE,
+		Avatar,
+		Birth,
+		CreateTime,
+		UserStatus,
+		UserType,
+		OrgId,
+		CREATER,
+		CREATE_TIME,
+		MODIFIER,
+		MODIFY_TIME
+  	</sql>
+	
+	
+	<select id="select" parameterType="string" resultMap="sysUserResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_user
+		WHERE
+			USERID = #{userid}
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.SysUserCriteria" resultMap="sysUserResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_user
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			USERID ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.SysUserCriteria" resultMap="sysUserResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_user
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			USERID ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.SysUserCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			sys_user
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

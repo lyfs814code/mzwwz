@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	$(function() {
+		$("#jvForm").bootstrapValidator({
+			feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+			fields: {
+								id:{
+	            	validators: {
+	                	notEmpty:{message:"id不能为空"}
+	            	}
+	            },
+								userId:{
+	            	validators: {
+	                	notEmpty:{message:"userId不能为空"}
+	            	}
+	            },
+								excTime:{
+	            	validators: {
+	                	notEmpty:{message:"excTime不能为空"}
+	            	}
+	            },
+								channel:{
+	            	validators: {
+	                	notEmpty:{message:"channel不能为空"}
+	            	}
+	            },
+								actName:{
+	            	validators: {
+	                	notEmpty:{message:"actName不能为空"}
+	            	}
+	            },
+								action:{
+	            	validators: {
+	                	notEmpty:{message:"action不能为空"}
+	            	}
+	            },
+								excUrl:{
+	            	validators: {
+	                	notEmpty:{message:"excUrl不能为空"}
+	            	}
+	            },
+								ipAddr:{
+	            	validators: {
+	                	notEmpty:{message:"ipAddr不能为空"}
+	            	}
+	            },
+								params:{
+	            	validators: {
+	                	notEmpty:{message:"params不能为空"}
+	            	}
+	            },
+								errmsg:{
+	            	validators: {
+	                	notEmpty:{message:"errmsg不能为空"}
+	            	}
+	            },
+							},
+			submitHandler: function(validator, form, submitButton) {
+				$.web.submit("jvForm");
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>sysUserLog信息修改</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 编辑表单 -->
+			[@p.form id="jvForm" action="sysUserLog/update.do"]
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label><span>*</span>id</label>				
+						<input type="text" class="form-control" name="id"  value="${sysUserLog.id!}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label><span>*</span>userId</label>				
+						<input type="text" class="form-control" name="userId"  value="${sysUserLog.userId!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label><span>*</span>excTime</label>				
+						<input type="text" class="form-control" name="excTime"  value="${(sysUserLog.excTime?string('yyyy-MM-dd'))!''}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label><span>*</span>channel</label>				
+						<input type="text" class="form-control" name="channel"  value="${sysUserLog.channel!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label><span>*</span>actName</label>				
+						<input type="text" class="form-control" name="actName"  value="${sysUserLog.actName!}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label><span>*</span>action</label>				
+						<input type="text" class="form-control" name="action"  value="${sysUserLog.action!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label><span>*</span>excUrl</label>				
+						<input type="text" class="form-control" name="excUrl"  value="${sysUserLog.excUrl!}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label><span>*</span>ipAddr</label>				
+						<input type="text" class="form-control" name="ipAddr"  value="${sysUserLog.ipAddr!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label><span>*</span>params</label>				
+						<input type="text" class="form-control" name="params"  value="${sysUserLog.params!}"/>
+					</div>							
+					<div class="form-group col-sm-12 col-lg-3">
+						<label><span>*</span>errmsg</label>				
+						<input type="text" class="form-control" name="errmsg"  value="${sysUserLog.errmsg!}"/>
+					</div>							
+				</div>
+				<div class="clearfix">
+				<div class="col-sm-12 col-lg-8">[@p.submit /][@p.cancel/]</div>
+			</div>
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>
+</html>

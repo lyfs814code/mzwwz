@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+	td {
+
+      white-space:nowrap;overflow:hidden;text-overflow: ellipsis;
+
+}
+</style>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>留言列表</h3>
+				</div>
+				<div class="pull-right">[@p.add obj="message" /]</div>
+			</div>
+			<!-- 查询表单 -->
+			<form class="form-inline form-search" action="message/list.do" method="post" id="tableForm">
+				<input type="hidden" name="paging.currentPage" value="${messageCriteria.paging.currentPage}" />
+				<div class="form-group">
+					<label>姓名：</label>
+					<input type="text" name="name" class="form-control" placeholder="" value="${messageCriteria.name!}" />	
+				</div>
+				[@p.search/]
+			</form>
+			<!-- 数据列表 -->
+			<div class="row">
+				<div class="col-lg-12">
+				[@p.table value=messageList paging=messageCriteria.paging;message,i,has_next]
+								[@p.column title="姓名"]
+								 <a onclick="btnHref('#/message/detail.do?id=${message.id}')">
+								 ${message.name!}
+								 </a>
+								[/@p.column]
+								[@p.column title="联系电话"]${message.phone!}[/@p.column]
+								[@p.column title="电子邮件"]${message.email!}[/@p.column]
+								[@p.column title="内容"]${message.detail!}[/@p.column]
+								[@p.column title="创建时间"]${(message.createTime?string('yyyy-MM-dd'))!''}[/@p.column>
+								[@p.column title="是否回复"]
+								 <a onclick="btnHref('#/message/remapper.do?id=${message.id}&replyFlag=${message.replyFlag!}')"> 
+								[@p.constant_value code_type="REPLY_FLAG" value="${message.replyFlag!}"/]
+								 </a>
+								[/@p.column]
+							[@p.column title="操作" style="width:130px;"] 
+						[@p.operate id="${message.id}" parID="id" obj="message" checkDel="false"/]
+					[/@p.column] 				
+				[/@p.table]	
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

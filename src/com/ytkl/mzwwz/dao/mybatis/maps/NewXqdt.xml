@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.NewXqdtDao">
+
+	<resultMap id="newsResultMap" type="com.ytkl.mzwwz.domain.News">
+		<result column="Id" property="id"/>
+		<result column="news_type" property="newsType"/>
+		<result column="title" property="title"/>
+		<result column="source" property="source"/>
+		<result column="detail" property="detail"/>
+		<result column="publish_flag" property="publishFlag"/>
+		<result column="CREATER" property="creater"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		<result column="MODIFIER" property="modifier"/>
+		<result column="MODIFY_TIME" property="modifyTime"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ytkl.mzwwz.domain.News">		
+		INSERT INTO news
+			( news_type, title, source, detail, publish_flag, CREATER, CREATE_TIME)
+		VALUES
+			( #{newsType}, #{title}, #{source}, #{detail}, #{publishFlag}, #{creater}, SYSDATE())
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.News">
+		UPDATE
+			news
+		SET
+			news_type = #{newsType},
+			title = #{title},
+			source = #{source},
+			detail = #{detail},
+			publish_flag = #{publishFlag},
+			MODIFIER = #{modifier},
+			MODIFY_TIME = SYSDATE()
+		WHERE
+			Id = #{id}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.News">
+		UPDATE
+			news
+		<set>
+		<if test="newsType != null  and newsType != '' ">
+			news_type = #{newsType},
+		</if>
+		<if test="title != null  and title != '' ">
+			title = #{title},
+		</if>
+		<if test="source != null  and source != '' ">
+			source = #{source},
+		</if>
+		<if test="detail != null  and detail != '' ">
+			detail = #{detail},
+		</if>
+		<if test="publishFlag != null  and publishFlag != '' ">
+			publish_flag = #{publishFlag},
+		</if>
+		<if test="creater != null  and creater != '' ">
+			CREATER = #{creater},
+		</if>
+		<if test="createTime != null  ">
+			CREATE_TIME = #{createTime},
+		</if>
+		<if test="modifier != null  and modifier != '' ">
+			MODIFIER = #{modifier},
+		</if>
+		<if test="modifyTime != null  ">
+			MODIFY_TIME = #{modifyTime}
+		</if>
+	</set>
+		WHERE
+			Id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			news
+		WHERE
+			Id = #{id}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+    	<if test="titleQue != null  and titleQue != '' ">
+		and title = #{titleQue}
+		</if>
+		and news_type = '2'
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		Id,
+		news_type,
+		title,
+		source,
+		detail,
+		publish_flag,
+		CREATER,
+		CREATE_TIME,
+		MODIFIER,
+		MODIFY_TIME
+  	</sql>
+	
+	
+	<select id="select" parameterType="int" resultMap="newsResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			news
+		WHERE
+			Id = #{id} 
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.NewsCriteria" resultMap="newsResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			news
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.NewsCriteria" resultMap="newsResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			news 
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.NewsCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			news
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

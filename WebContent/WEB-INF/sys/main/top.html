@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default ">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+				class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">民政微网站</a>
+	</div>
+	<!-- /.navbar-header -->
+	<div id="navbar" class="navbar-collapse collapse">
+		<ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+					class="fa fa-envelope-o"></span> <span class="caret"></span></a>
+				<ul class="dropdown-menu extended">
+					<li>
+						<p>你有 14 条信息</p>
+					</li>
+					<li><a href="#"><i class="fa fa-comment fa-fw"></i> 有人给你您送了消息. <span class="pull-right text-muted small">40
+								分钟</span> </a></li>
+					<li><a href="#"><i class="fa fa-comment fa-fw"></i> 有人回答了您的问题. <span class="pull-right text-muted small">40
+								分钟</span> </a></li>
+					<li><a class="text-center" href="#"> <strong>查看所有信息 <i class="fa fa-angle-right"></i></strong>
+					</a></li>
+				</ul></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user"></span>
+					<span class="caret"></span></a>
+				<ul class="dropdown-menu extended">
+					<li><a href="#person.do"><i class="fa fa-gear fa-fw"></i>个人中心 </a></li>
+					<li class="divider"></li>
+					<li><a href="javascript:changePwd()"><i class="fa fa-gear fa-fw"></i>修改密码 </a></li>
+					<li><a href="logout.do"><i class="fa fa-sign-out fa-fw"></i>退出 </a></li>
+				</ul></li>
+		</ul>
+
+	</div>
+
+</nav>
+
+<script type="text/javascript">
+	// 修改密码
+	function changePwd() {
+		BootstrapDialog
+				.show({
+					type : BootstrapDialog.TYPE_INFO,
+					draggable : true,
+					title : "修改密码",
+					message : $('<div></div>')
+							.append(
+									"<iframe src='sysUser/changePwd.do' style='width:100%;min-height:100%;' frameborder='0' onload='Javascript:SetWinHeight(this)'></iframe>")
+				});
+	}
+</script>

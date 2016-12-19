@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	//刷新数据字典缓存
+	function refreshSjzd(){
+		$.post("sysCodeValue/refreshSjzd.do", {}, function(json) {
+				    if(json=="SUCCESS"){
+				    	showMsg("数据字典缓存已更新！");
+				    }else{
+				    	showMsg("数据字典缓存刷新失败！");
+				    }
+			});
+	}
+</script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>数据字典</h3>
+				</div>
+				<div class="pull-right">
+					<a class="btn  btn-xs" onclick="javascript:refreshSjzd();">
+						<span class="fa fa-refresh"></span> 刷新缓存
+					</a>
+					[@p.add obj="sysCodeValue" /]
+				</div>
+			</div>
+			<!-- 查询表单 -->
+			<form class="form-inline form-search" action="sysCodeValue/list.do" method="post" id="tableForm">
+				<input type="hidden" name="paging.currentPage" value="${sysCodeValueCriteria.paging.currentPage}" />
+				<div class="form-group">
+					<label>查询字段：</label>
+					<input type="text" name="" class="form-control" placeholder="" value="" />						
+				</div>
+				[@p.search/]
+			</form>
+			<!-- 数据列表 -->
+			<div class="row">
+				<div class="col-lg-12">
+				[@p.table value=sysCodeValueList paging=sysCodeValueCriteria.paging;sysCodeValue,i,has_next]
+								[@p.column title="分类"]${sysCodeValue.codeType!}[/@p.column]
+								[@p.column title="代码"]${sysCodeValue.code!}[/@p.column]
+								[@p.column title="名称"]${sysCodeValue.name!}[/@p.column]
+								[@p.column title="排序"]${sysCodeValue.orderNo!}[/@p.column]
+							[@p.column title="操作" style="width:130px;"] 
+						[@p.operate id="${sysCodeValue.id}" parID="id" obj="sysCodeValue"/]
+					[/@p.column] 				
+				[/@p.table]
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

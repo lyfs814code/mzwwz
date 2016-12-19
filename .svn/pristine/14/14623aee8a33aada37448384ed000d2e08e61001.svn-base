@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>sysUserLog列表</h3>
+				</div>
+			</div>
+			<!-- 查询表单 -->
+			<form class="form-inline form-search" action="sysUserLog/list.do" method="post" id="tableForm">
+				<input type="hidden" name="paging.currentPage" value="${sysUserLogCriteria.paging.currentPage}" />
+				<div class="form-group">
+					<label>查询字段：</label>
+					<input type="text" name="" class="form-control" placeholder="" value="" />						
+				</div>
+				[@p.search/]
+			</form>
+			<!-- 数据列表 -->
+			<div class="row">
+				<div class="col-lg-12">
+				[@p.table value=sysUserLogList paging=sysUserLogCriteria.paging;sysUserLog,i,has_next]
+								[@p.column title="userId"]${sysUserLog.userId!}[/@p.column]
+								[@p.column title="excTime"]${(sysUserLog.excTime?string('yyyy-MM-dd hh:mm:ss'))!''}[/@p.column>
+								[@p.column title="actName"]${sysUserLog.actName!}[/@p.column]
+								[@p.column title="excUrl"]${sysUserLog.excUrl!}[/@p.column]
+								[@p.column title="ipAddr"]${sysUserLog.ipAddr!}[/@p.column]
+								[@p.column title="操作" style="width:130px;"] 
+									[@p.operate id="${sysUserLog.id}" parID="id" obj="sysUserLog"/]
+								[/@p.column] 				
+				[/@p.table]
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

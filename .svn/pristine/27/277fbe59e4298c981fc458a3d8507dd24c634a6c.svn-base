@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.SysCodeTypeDao">
+
+	<resultMap id="sysCodeTypeResultMap" type="com.ytkl.mzwwz.domain.SysCodeType">
+		<result column="CODE_TYPE" property="codeType"/>
+		<result column="CODE_NAME" property="codeName"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="codeType" parameterType="com.ytkl.mzwwz.domain.SysCodeType">		
+		INSERT INTO sys_code_type
+			(CODE_TYPE, CODE_NAME)
+		VALUES
+			(#{codeType}, #{codeName})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.SysCodeType">
+		UPDATE
+			sys_code_type
+		SET
+			CODE_NAME = #{codeName}
+		WHERE
+			CODE_TYPE = #{codeType}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.SysCodeType">
+		UPDATE
+			sys_code_type
+		<set>
+		<if test="codeName != null  and codeName != '' ">
+			CODE_NAME = #{codeName}
+		</if>
+	</set>
+		WHERE
+			CODE_TYPE = #{codeType}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		DELETE FROM
+			sys_code_type
+		WHERE
+			CODE_TYPE = #{codeType}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		CODE_TYPE,
+		CODE_NAME
+  	</sql>
+	
+	
+	<select id="select" parameterType="string" resultMap="sysCodeTypeResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_code_type
+		WHERE
+			CODE_TYPE = #{codeType}
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.SysCodeTypeCriteria" resultMap="sysCodeTypeResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_code_type
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			CODE_TYPE ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.SysCodeTypeCriteria" resultMap="sysCodeTypeResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_code_type
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			CODE_TYPE ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.SysCodeTypeCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			sys_code_type
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

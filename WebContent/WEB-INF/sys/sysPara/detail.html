@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>sysPara信息</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 详细表单 -->
+			[@p.form id="" action=""]
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>id</label>			
+						<input type="text" class="form-control" value="${sysPara.id!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>paraCode</label>			
+						<input type="text" class="form-control" value="${sysPara.paraCode!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>paraName</label>			
+						<input type="text" class="form-control" value="${sysPara.paraName!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>paraValue</label>			
+						<input type="text" class="form-control" value="${sysPara.paraValue!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>modifier</label>			
+						<input type="text" class="form-control" value="${sysPara.modifier!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>modifyTime</label>			
+						<input type="text" class="form-control" value="${(sysPara.modifyTime?string('yyyy-MM-dd'))!''}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="col-sm-12 col-lg-8">[@p.btn_detail ctr="SysPara"  id="${sysPara.id}" parID="id"/]</div>
+				</div>
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>

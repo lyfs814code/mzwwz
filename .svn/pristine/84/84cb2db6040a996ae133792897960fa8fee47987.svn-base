@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	$(function() {
+		$("#jvForm").bootstrapValidator({
+			feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+			fields: {
+								id:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								codeType:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								code:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								name:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								orderNo:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								flagEdit:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								creater:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								createTime:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								modifier:{
+	            	validators: {
+	                	
+	            	}
+	            },
+								modifyTime:{
+	            	validators: {
+	                	
+	            	}
+	            },
+							},
+			submitHandler: function(validator, form, submitButton) {
+				$.web.submit("jvForm");
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>新增sysCodeValue信息</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 新增表单 -->
+			[@p.form id="jvForm" action="sysCodeValue/save.do"]
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>id</label>
+						<input type="text" class="form-control" name="id"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>codeType</label>
+						<input type="text" class="form-control" name="codeType"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>code</label>
+						<input type="text" class="form-control" name="code"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>name</label>
+						<input type="text" class="form-control" name="name"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>orderNo</label>
+						<input type="text" class="form-control" name="orderNo"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>flagEdit</label>
+						<input type="text" class="form-control" name="flagEdit"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>creater</label>
+						<input type="text" class="form-control" name="creater"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>createTime</label>
+						<input type="text" class="form-control" name="createTime"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>modifier</label>
+						<input type="text" class="form-control" name="modifier"  value=""/>	
+					</div>
+					<div class="form-group col-sm-12 col-lg-3">
+						<label>modifyTime</label>
+						<input type="text" class="form-control" name="modifyTime"  value=""/>	
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="col-sm-12 col-lg-8">[@p.submit/][@p.cancel/]</div>
+				</div>
+				[/@p.form]
+		</div>
+	</div>
+</body>
+</html>

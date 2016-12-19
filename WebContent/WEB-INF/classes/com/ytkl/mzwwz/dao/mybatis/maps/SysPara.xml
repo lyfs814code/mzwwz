@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.SysParaDao">
+
+	<resultMap id="sysParaResultMap" type="com.ytkl.mzwwz.domain.SysPara">
+		<result column="Id" property="id"/>
+		<result column="PARA_CODE" property="paraCode"/>
+		<result column="PARA_NAME" property="paraName"/>
+		<result column="PARA_VALUE" property="paraValue"/>
+		<result column="MODIFIER" property="modifier"/>
+		<result column="MODIFY_TIME" property="modifyTime"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ytkl.mzwwz.domain.SysPara">		
+		INSERT INTO sys_para
+			(Id, PARA_CODE, PARA_NAME, PARA_VALUE, MODIFIER, MODIFY_TIME)
+		VALUES
+			(#{id}, #{paraCode}, #{paraName}, #{paraValue}, #{modifier}, #{modifyTime})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.SysPara">
+		UPDATE
+			sys_para
+		SET
+			PARA_CODE = #{paraCode},
+			PARA_NAME = #{paraName},
+			PARA_VALUE = #{paraValue},
+			MODIFIER = #{modifier},
+			MODIFY_TIME = #{modifyTime}
+		WHERE
+			Id = #{id}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.SysPara">
+		UPDATE
+			sys_para
+		<set>
+		<if test="paraCode != null  and paraCode != '' ">
+			PARA_CODE = #{paraCode},
+		</if>
+		<if test="paraName != null  and paraName != '' ">
+			PARA_NAME = #{paraName},
+		</if>
+		<if test="paraValue != null  and paraValue != '' ">
+			PARA_VALUE = #{paraValue},
+		</if>
+		<if test="modifier != null  and modifier != '' ">
+			MODIFIER = #{modifier},
+		</if>
+		<if test="modifyTime != null  ">
+			MODIFY_TIME = #{modifyTime}
+		</if>
+	</set>
+		WHERE
+			Id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			sys_para
+		WHERE
+			Id = #{id}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		Id,
+		PARA_CODE,
+		PARA_NAME,
+		PARA_VALUE,
+		MODIFIER,
+		MODIFY_TIME
+  	</sql>
+	
+	
+	<select id="select" parameterType="int" resultMap="sysParaResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_para
+		WHERE
+			Id = #{id}
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.SysParaCriteria" resultMap="sysParaResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_para
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.SysParaCriteria" resultMap="sysParaResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_para
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.SysParaCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			sys_para
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

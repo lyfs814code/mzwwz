@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task.xsd"
+	default-lazy-init="true">
+
+	<!-- Property configurer -->
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/properties/jdbc.properties</value>
+				<value>/WEB-INF/properties/resource.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Message source -->
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="cacheSeconds" value="-1" />
+		<property name="basenames">
+			<list>
+				<value>/WEB-INF/languages/core_admin/messages</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Aop -->
+	<aop:config>
+		<aop:pointcut id="transactionPointcut"
+			expression="execution(* com.ytkl.mzwwz.service..*.*(..))" />
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionPointcut" />
+	</aop:config>
+
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insert*" />
+			<tx:method name="update*" />
+			<tx:method name="delete*" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- Data source -->
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<property name="maxIdle" value="${jdbc.maxIdle}" />
+		<property name="maxWait" value="${jdbc.maxWait}" />
+	</bean>
+
+	<!-- SqlSessionFactoryBean -->
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="WEB-INF/config/MapperConfig.xml" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.ytkl.mzwwz.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<context:component-scan base-package="com.ytkl.mzwwz.dao" />
+	<context:component-scan base-package="com.ytkl.mzwwz.web.controller" />
+	<context:component-scan base-package="com.ytkl.mzwwz.service" />
+	<context:component-scan base-package="com.ytkl.mzwwz.domain" />
+	<context:component-scan base-package="com.ytkl.mzwwz.aspect" />
+	<context:component-scan base-package="com.ytkl.mzwwz.timer" />
+
+	<!-- 声明自动为spring容器中那些配置@aspectJ切面的bean创建代理，织入切面 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+	<!-- 定时器开关 -->
+	<task:annotation-driven />
+
+	<!-- 过滤器 -->
+	<mvc:interceptors>
+		<bean id="adminContextInterceptor" class="com.ytkl.mzwwz.base.AdminContextInterceptor">
+			<property name="excludeUrls">
+				<list>
+					<!-- 获取验证码 -->
+					<value>/getKaptchaImage.do</value>
+					<!-- 查询验证码 -->
+					<value>/getAuthCode.do</value>
+					<!-- 进入登陆页面 -->
+					<value>/login.do</value>
+					<!-- 登录提交 -->
+					<value>/toLogin.do</value>
+					<!-- 退出 -->
+					<value>/logout.do</value>
+					<!-- ueditor -->
+					<value>/ueditor/dispatch.do</value>
+					<!-- 移动端 -->
+					<value>/mobile</value>
+				</list>
+			</property>
+		</bean>
+	</mvc:interceptors>
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="webBindingInitializer">
+			<bean class="com.ytkl.mzwwz.base.BindingInitializer" />
+		</property>
+	</bean>
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="cookieName" value="clientlanguage" />
+		<property name="cookieMaxAge" value="-1" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop
+					key="org.springframework.web.bind.MissingServletRequestParameterException">/error/requiredParameter</prop>
+				<prop key="org.springframework.beans.TypeMismatchException">/error/mismatchParameter</prop>
+				<prop key="org.springframework.web.bind.ServletRequestBindingException">/error/bindException</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+
+	<!-- JSR-303 support will be detected on classpath and enabled automatically -->
+	<mvc:annotation-driven validator="validator" />
+
+	<!-- View resolvers -->
+
+	<bean id="freemarkerViewResolver" class="com.ytkl.mzwwz.base.RichFreeMarkerViewResolver">
+		<property name="prefix" value="/sys/" />
+		<property name="suffix" value=".html" />
+		<property name="contentType" value="text/html; charset=UTF-8" />
+		<property name="exposeRequestAttributes" value="false" />
+		<property name="exposeSessionAttributes" value="false" />
+		<property name="exposeSpringMacroHelpers" value="true" />
+	</bean>
+
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF" />
+		<property name="freemarkerVariables">
+			<map>
+			</map>
+		</property>
+		<property name="freemarkerSettings">
+			<props>
+				<!-- 设置标签类型 两种：[] 和 <> 。[] 这种标记解析要快些 -->
+				<prop key="tag_syntax">auto_detect</prop>
+				<prop key="template_update_delay">0</prop>
+				<prop key="defaultEncoding">UTF-8</prop>
+				<prop key="url_escaping_charset">UTF-8</prop>
+				<prop key="locale">zh_CN</prop>
+				<prop key="boolean_format">true,false</prop>
+				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+				<prop key="date_format">yyyy-MM-dd</prop>
+				<prop key="time_format">HH:mm:ss</prop>
+				<prop key="number_format">0.######</prop>
+				<prop key="whitespace_stripping">true</prop>
+				<prop key="auto_import">/ftl/pony/index.ftl as p,/ftl/spring.ftl as s</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!--HttpSession -->
+	<bean id="sessionProvider" class="com.ytkl.mzwwz.base.HttpSessionProvider" />
+
+	<!-- 配置 文件上传的支持 -->
+	<bean id="multipartResolver"
+		class="com.ytkl.mzwwz.util.CommonsMultiparResolver">
+		<!-- 文件限制100M -->
+		<property name="maxUploadSize" value="104857600" />
+		<!--resolveLazily属性启用是为了推迟文件解析，以便在UploadAction 中捕获文件大小异常 -->
+		<property name="resolveLazily" value="true" />
+		<!-- 配置缓存 -->
+		<property name="maxInMemorySize" value="40960" />
+	</bean>
+
+	<!-- 当Spring容器启动完成后执行下面的这个Bean -->
+	<bean class="com.ytkl.mzwwz.base.LoadDataAfterSpringLoad" />
+	
+</beans>

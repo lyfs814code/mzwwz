@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>sysUser信息</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 详细表单 -->
+			[@p.form id="" action=""]
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>userid</label>			
+						<input type="text" class="form-control" value="${sysUser.userid!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>pwd</label>			
+						<input type="text" class="form-control" value="${sysUser.pwd!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>name</label>			
+						<input type="text" class="form-control" value="${sysUser.name!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>sex</label>			
+						<input type="text" class="form-control" value="${sysUser.sex!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>idCard</label>			
+						<input type="text" class="form-control" value="${sysUser.idCard!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>area</label>			
+						<input type="text" class="form-control" value="${sysUser.area!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>address</label>			
+						<input type="text" class="form-control" value="${sysUser.address!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>email</label>			
+						<input type="text" class="form-control" value="${sysUser.email!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>phone</label>			
+						<input type="text" class="form-control" value="${sysUser.phone!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>avatar</label>			
+						<input type="text" class="form-control" value="${sysUser.avatar!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>birth</label>			
+						<input type="text" class="form-control" value="${(sysUser.birth?string('yyyy-MM-dd'))!''}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>createtime</label>			
+						<input type="text" class="form-control" value="${(sysUser.createtime?string('yyyy-MM-dd'))!''}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>userstatus</label>			
+						<input type="text" class="form-control" value="${sysUser.userstatus!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>usertype</label>			
+						<input type="text" class="form-control" value="${sysUser.usertype!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>orgid</label>			
+						<input type="text" class="form-control" value="${sysUser.orgid!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>creater</label>			
+						<input type="text" class="form-control" value="${sysUser.creater!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>createTime</label>			
+						<input type="text" class="form-control" value="${(sysUser.createTime?string('yyyy-MM-dd'))!''}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>modifier</label>			
+						<input type="text" class="form-control" value="${sysUser.modifier!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>modifyTime</label>			
+						<input type="text" class="form-control" value="${(sysUser.modifyTime?string('yyyy-MM-dd'))!''}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="col-sm-12 col-lg-8">[@p.btn_detail ctr="SysUser"  id="${sysUser.userid}" parID="userid"/]</div>
+				</div>
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.SysRoleMenuDao">
+
+	<resultMap id="sysRoleMenuResultMap" type="com.ytkl.mzwwz.domain.SysRoleMenu">
+		<result column="Id" property="id"/>
+		<result column="ROLE_ID" property="roleId"/>
+		<result column="MENU_ID" property="menuId"/>
+		<result column="BTN_IDS" property="btnIds"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ytkl.mzwwz.domain.SysRoleMenu">		
+		INSERT INTO sys_role_menu
+			(Id, ROLE_ID, MENU_ID, BTN_IDS)
+		VALUES
+			(#{id}, #{roleId}, #{menuId}, #{btnIds})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.SysRoleMenu">
+		UPDATE
+			sys_role_menu
+		SET
+			ROLE_ID = #{roleId},
+			MENU_ID = #{menuId},
+			BTN_IDS = #{btnIds}
+		WHERE
+			Id = #{id}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.SysRoleMenu">
+		UPDATE
+			sys_role_menu
+		<set>
+		<if test="roleId != null  ">
+			ROLE_ID = #{roleId},
+		</if>
+		<if test="menuId != null  ">
+			MENU_ID = #{menuId},
+		</if>
+		<if test="btnIds != null  and btnIds != '' ">
+			BTN_IDS = #{btnIds}
+		</if>
+	</set>
+		WHERE
+			Id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			sys_role_menu
+		WHERE
+			Id = #{id}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or"> 
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		Id,
+		ROLE_ID,
+		MENU_ID,
+		BTN_IDS
+  	</sql>
+	
+	
+	<select id="select" parameterType="int" resultMap="sysRoleMenuResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_role_menu
+		WHERE
+			Id = #{id}
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.SysRoleMenuCriteria" resultMap="sysRoleMenuResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_role_menu
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.SysRoleMenuCriteria" resultMap="sysRoleMenuResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_role_menu
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.SysRoleMenuCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			sys_role_menu
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>系统日志信息</h3>
+				</div>
+				<div class="pull-right">[@p.history_back/]</div>
+			</div>
+			<!-- 详细表单 -->
+			[@p.form id="" action=""]
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>用户名</label>			
+						<input type="text" class="form-control" value="${sysUserLog.userId!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>时间</label>			
+						<input type="text" class="form-control" value="${(sysUserLog.excTime?string('yyyy-MM-dd'))!''}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>功能</label>			
+						<input type="text" class="form-control" value="${sysUserLog.channel!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>方法名称</label>			
+						<input type="text" class="form-control" value="${sysUserLog.actName!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>方法</label>			
+						<input type="text" class="form-control" value="${sysUserLog.action!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>URL</label>			
+						<input type="text" class="form-control" value="${sysUserLog.excUrl!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>IP地址</label>			
+						<input type="text" class="form-control" value="${sysUserLog.ipAddr!}" />						
+					</div>							
+				</div>
+				<div class="clearfix">
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>参数</label>			
+						<input type="text" class="form-control" value="${sysUserLog.params!}" />						
+					</div>							
+					<div class="form-group col-lg-3">	
+						<label><span>*</span>错误信息</label>			
+						<input type="text" class="form-control" value="${sysUserLog.errmsg!}" />						
+					</div>							
+				</div>
+				<!-- <div class="clearfix">
+					<div class="col-sm-12 col-lg-8">[@p.btn_detail ctr="SysUserLog"  id="${sysUserLog.id}" parID="id"/]</div>
+				</div> -->
+			[/@p.form]
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- 页面信息 -->
+			<div class="console-title console-title-border clearfix">
+				<div class="pull-left">
+					<h3>联系方式</h3>
+				</div>
+				<div class="pull-right">[@p.add obj="linkInfo" /]</div>
+			</div>
+			<!-- 查询表单 -->
+			<form class="form-inline form-search" action="linkInfo/list.do" method="post" id="tableForm">
+				<input type="hidden" name="paging.currentPage" value="${linkInfoCriteria.paging.currentPage}" />
+				<div class="form-group">
+					<label>联系人：</label>
+					<input type="text" name="linkNameQry" class="form-control" placeholder="" value="" />						
+				</div>
+				<div class="form-group">
+					<label>类型：</label>
+					[@p.constant_select code_type="LINK_LEVEL" name="linkLevelQry" value="${linkInfoCriteria.linkLevelQry!}" headerKey="" headerValue="全部" /]		
+				</div>
+				[@p.search/]
+			</form>
+			<!-- 数据列表 -->
+			<div class="row">
+				<div class="col-lg-12">
+				[@p.table value=linkInfoList paging=linkInfoCriteria.paging;linkInfo,i,has_next]
+								[@p.column title="类型"][@p.constant_value code_type="LINK_LEVEL" value="${linkInfo.linkLevel!}"/][/@p.column]
+								[@p.column title="联系人"]${linkInfo.linkName!}[/@p.column]
+								[@p.column title="联系电话"]${linkInfo.phone!}[/@p.column]
+								[@p.column title="发布状态"][@p.constant_value code_type="IS_PUBLISH" value="${linkInfo.publishFlag!}"/]	[/@p.column]
+							[@p.column title="操作" style="width:130px;"] 
+						[@p.operate id="${linkInfo.id}" parID="id" obj="linkInfo" checkDel="false"/]
+					[/@p.column] 				
+				[/@p.table]
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

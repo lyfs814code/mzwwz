@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ytkl.mzwwz.dao.SysUserLogDao">
+
+	<resultMap id="sysUserLogResultMap" type="com.ytkl.mzwwz.domain.SysUserLog">
+		<result column="Id" property="id"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="EXC_TIME" property="excTime"/>
+		<result column="channel" property="channel"/>
+		<result column="act_name" property="actName"/>
+		<result column="action" property="action"/>
+		<result column="exc_url" property="excUrl"/>
+		<result column="ip_addr" property="ipAddr"/>
+		<result column="params" property="params"/>
+		<result column="errMsg" property="errmsg"/>
+	</resultMap>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ytkl.mzwwz.domain.SysUserLog">		
+		INSERT INTO sys_user_log
+			(Id, USER_ID, EXC_TIME, channel, act_name, action, exc_url, ip_addr, params, errMsg)
+		VALUES
+			(#{id}, #{userId}, #{excTime}, #{channel}, #{actName}, #{action}, #{excUrl}, #{ipAddr}, #{params}, #{errmsg})
+	</insert>
+
+	<update id="update" parameterType="com.ytkl.mzwwz.domain.SysUserLog">
+		UPDATE
+			sys_user_log
+		SET
+			USER_ID = #{userId},
+			EXC_TIME = #{excTime},
+			channel = #{channel},
+			act_name = #{actName},
+			action = #{action},
+			exc_url = #{excUrl},
+			ip_addr = #{ipAddr},
+			params = #{params},
+			errMsg = #{errmsg}
+		WHERE
+			Id = #{id}
+	</update>
+	
+	<update id="updateSelective" parameterType="com.ytkl.mzwwz.domain.SysUserLog">
+		UPDATE
+			sys_user_log
+		<set>
+		<if test="userId != null  and userId != '' ">
+			USER_ID = #{userId},
+		</if>
+		<if test="excTime != null  ">
+			EXC_TIME = #{excTime},
+		</if>
+		<if test="channel != null  and channel != '' ">
+			channel = #{channel},
+		</if>
+		<if test="actName != null  and actName != '' ">
+			act_name = #{actName},
+		</if>
+		<if test="action != null  and action != '' ">
+			action = #{action},
+		</if>
+		<if test="excUrl != null  and excUrl != '' ">
+			exc_url = #{excUrl},
+		</if>
+		<if test="ipAddr != null  and ipAddr != '' ">
+			ip_addr = #{ipAddr},
+		</if>
+		<if test="params != null  and params != '' ">
+			params = #{params},
+		</if>
+		<if test="errmsg != null  and errmsg != '' ">
+			errMsg = #{errmsg}
+		</if>
+	</set>
+		WHERE
+			Id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+			sys_user_log
+		WHERE
+			Id = #{id}
+	</delete>
+	
+	<sql id="criteriaWhereClause" >
+	    <trim prefix="where" prefixOverrides="and|or">
+	    	<if test="userIdQry != null  and userIdQry != '' ">
+	    		and USER_ID like CONCAT('%',#{userIdQry},'%')
+			</if>
+	    </trim>
+	</sql>
+	
+	 <sql id="Base_Column_List" >
+		Id,
+		USER_ID,
+		EXC_TIME,
+		channel,
+		act_name,
+		action,
+		exc_url,
+		ip_addr,
+		params,
+		errMsg
+  	</sql>
+	
+	
+	<select id="select" parameterType="int" resultMap="sysUserLogResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_user_log
+		WHERE
+			Id = #{id}
+	</select>
+
+	<select id="list" parameterType="com.ytkl.mzwwz.criteria.SysUserLogCriteria" resultMap="sysUserLogResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_user_log
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="listOnPage" parameterType="com.ytkl.mzwwz.criteria.SysUserLogCriteria" resultMap="sysUserLogResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+			sys_user_log
+		<include refid="criteriaWhereClause"/>
+		ORDER BY
+			Id ASC
+	</select>
+
+	<select id="count" parameterType="com.ytkl.mzwwz.criteria.SysUserLogCriteria" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			sys_user_log
+		<include refid="criteriaWhereClause"/>
+	</select>
+
+</mapper>

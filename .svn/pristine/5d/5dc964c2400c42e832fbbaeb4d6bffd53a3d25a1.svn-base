@@ -1,0 +1,123 @@
+package com.ytkl.mzwwz.web.controller;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ytkl.mzwwz.aspect.ActionControllerLog;
+import com.ytkl.mzwwz.base.ValidatorShow;
+import com.ytkl.mzwwz.criteria.MessageApplyCriteria;
+import com.ytkl.mzwwz.domain.MessageApply;
+import com.ytkl.mzwwz.domain.SysUser;
+import com.ytkl.mzwwz.service.MessageApplyService;
+import com.ytkl.mzwwz.service.MessageService;
+import com.ytkl.mzwwz.util.SessionUtil;
+
+@Controller
+public class MessageApplyController {
+	private static final Logger log = LoggerFactory.getLogger(MessageApplyController.class);
+
+	@Autowired
+	private HttpSession session;
+	
+	@Autowired
+	private MessageApplyService messageApplyService;
+	
+	@Autowired
+	private MessageService messageService;
+
+	@RequestMapping("/messageApply/list.do")
+	public String list(MessageApplyCriteria messageApplyCriteria,ModelMap model,String messageId) {
+		if(messageApplyCriteria.getMessage_id()==null){
+			messageApplyCriteria.setMessage_id(messageId);
+		}
+		List<MessageApply> messageApplyList = messageApplyService.listOnPage(messageApplyCriteria);
+		model.addAttribute("messageApplyList", messageApplyList);
+		model.addAttribute("messageApplyCriteria", messageApplyCriteria);
+		
+		return "messageApply/list";
+	}
+	
+	@ActionControllerLog(channel = "messageApply", action = "detail.do", title = "messageApply详细", isSaveRequestData = true)
+	@RequestMapping("/messageApply/detail.do")
+	public String detail(MessageApplyCriteria messageApplyCriteria,int id, HttpServletRequest request, ModelMap model) {
+		MessageApply messageApply = messageApplyService.select(id);
+
+		model.addAttribute("messageApply", messageApply);
+		model.addAttribute("messageApplyCriteria", messageApplyCriteria);
+
+		return "messageApply/detail";
+	}
+	
+	@RequestMapping("/messageApply/write.do")
+	public String write(MessageApplyCriteria messageApplyCriteria, ModelMap model) {
+		model.addAttribute("messageApplyCriteria", messageApplyCriteria);
+		
+		return "messageApply/write";
+	}
+	
+	@RequestMapping("/messageApply/edit.do")
+	public String edit(int id, MessageApplyCriteria messageApplyCriteria,ModelMap model) {
+		MessageApply messageApply = messageApplyService.select(id);
+		
+		model.addAttribute("messageApply", messageApply);
+		model.addAttribute("messageApplyCriteria", messageApplyCriteria);
+		
+		return "messageApply/edit";
+	}
+	
+	@ActionControllerLog(channel = "messageApply", action = "save.do", title = "新增messageApply", isSaveRequestData = true)
+	@RequestMapping("/messageApply/save.do")
+	public @ResponseBody String save(@Valid MessageApply messageApply,BindingResult result,ModelMap model) {
+		if(result.hasErrors()){
+			return  ValidatorShow.create().showErrors(result,model);
+		}
+		
+		SysUser loginUser = (SysUser) session.getAttribute(SessionUtil.SESSION_USER);
+		messageApply.setCreater(loginUser.getUserid());
+		messageApply.setCreateTime(new Date());
+		messageService.updateState(messageApply.getMessageId(),"2");
+		messageApplyService.insert(messageApply);
+		log.info("save acquisition id={}", messageApply.getId());
+		
+		return SessionUtil.FUN_SUCCESS_SAVE;
+	}
+	
+	@ActionControllerLog(channel = "messageApply", action = "update.do", title = "修改messageApply", isSaveRequestData = true)
+	@RequestMapping("/messageApply/update.do")
+	public @ResponseBody String update(@Valid MessageApply messageApply,BindingResult result,MessageApplyCriteria messageApplyCriteria,ModelMap model) {
+		if(result.hasErrors()){
+			return  ValidatorShow.create().showErrors(result,model);
+		}
+		//在回复信息自动将状态改为已回复
+		messageApply.setModifyTime(new Date());
+		messageApplyService.update(messageApply);
+		log.info("update MessageApply id={}", messageApply.getId());
+		
+		return SessionUtil.FUN_SUCCESS_UPDATE;
+	}
+	
+	@ActionControllerLog(channel = "messageApply", action = "delete.do", title = "删除messageApply", isSaveRequestData = true)
+	@RequestMapping("/messageApply/delete.do")
+	public @ResponseBody String delete(int id, MessageApplyCriteria messageApplyCriteria, ModelMap model) {
+		int Myesage_id=messageApplyService.select(id).getMessageId();
+		messageService.updateState(Myesage_id,"1");
+		messageApplyService.delete(id);
+		log.info("delete to messageApply id={}", id);
+		
+		return SessionUtil.FUN_SUCCESS_DEL;
+	}
+	
+}

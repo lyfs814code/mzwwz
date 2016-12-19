@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<title>民政微网站</title>
+	<link rel="stylesheet" href="res/bootstrap-3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="res/css/login.css">
+	<script type="text/javascript" src="res/js/jquery.min.js"></script>
+	<script type="text/javascript" src="res/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="res/bootstrapvalidator-0.4.5/js/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="res/js/jquery.roundabout.min.js"></script>
+	<script type="text/javascript" src="res/js/jquery.easing.1.3.js"></script>
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<div class="slogan-div">
+		<ul>
+			<li>让</li>
+			<li><div style="margin-left:20px;">数</div></li>
+			<li><div style="margin-left:40px;">据</div></li>
+			<li><div style="margin-left:60px;">改</div></li>
+			<li><div style="margin-left:80px;">变</div></li>
+			<li><div style="margin-left:100px;">生</div></li>
+			<li><div style="margin-left:120px;">活</div></li>
+		</ul>
+	</div>
+	<div>
+		<div class="title0">民政微网站</div>
+		<div class="title1">及时、准确、生动、宣传、收集</div>
+			<div id="myRoundabout" style="position: absolute; width: 100%; height: 100%; display: block;">
+				<ul>
+					<li><img src="res/images/login/page1_0.png"></li>
+					<li><img src="res/images/login/page1_1.png"></li>
+					<li><img src="res/images/login/page1_2.png"></li>
+				</ul>
+			</div>
+	</div>
+	<div class="login-div">
+		<div class="login-div-form">
+			<form id="login-form" method="post" action="toLogin.do">
+				<h2>登录</h2>
+				<p class="login-title">欢迎访问 民政微网站</p>
+				<div class="has-error">
+					<label class="control-label" id="fm-errMsg"
+						style="font-size: 14px;font-weight: 300;color: red;">${errMsg!}</label>
+				</div>
+				<div class="form-group">
+					<input type="text" name="loginId" placeholder="账户名/邮箱/手机号"
+						class="form-control" data-bv-notempty="true"
+						data-bv-notempty-message="请输入账户名" />
+				</div>
+				<div class="form-group">
+					<input type="password" name="pwd" placeholder="请输入密码"
+						class="form-control" data-bv-notempty="true"
+						data-bv-notempty-message="请输入密码" />
+				</div>
+				<div>
+					<div class="form-group"
+						style="width:150px;float: left;margin-right: 10px;">
+						<input type="text" class="form-control" id="checkcode"
+							name="authCode">
+					</div>
+					<img src="getKaptchaImage.do" id="img_yzm" onclick="refreshImg()"
+						alt="验证码" class="img-rounded" />
+				</div>
+				<button type="submit">登录</button>
+			</form>
+		</div>
+	</div>
+
+	<div
+		style="position: absolute;bottom: 20px;width: 100%;text-align: center;">
+		<p>©2016 北京宜腾凯来科技有限公司 京ICP证******号</p>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			$("#login-form").bootstrapValidator({
+				feedbackIcons : {
+					valid : 'glyphicon glyphicon-ok',
+					invalid : 'glyphicon glyphicon-remove',
+					validating : 'glyphicon glyphicon-refresh'
+				},
+				fields : {
+					authCode : {
+						threshold : 4, //有4字符以上才发送ajax请求
+						validators : {
+							notEmpty : {
+								message : "请输入验证码"
+							},
+							stringLength : {
+								min : 4,
+								max : 4,
+								message : "请输入4位验证码"
+							},
+							remote : {//ajax验证。server result:{"valid",true or false}
+								url : "getAuthCode.do",
+								message : "验证码错误",
+								delay : 2000,//每输入一个字符，就发ajax请求，服务器压力还是太大，设置2秒发送一次ajax
+								type : 'POST'//请求方式
+							}
+						}
+					}
+				}
+			});
+
+		    $('#myRoundabout ul').roundabout({
+		    	easing: 'easeOutInCirc',
+		    	autoplay: true,
+			    autoplayDuration: 1000,
+			    autoplayPauseOnHover: true
+		    });
+
+		});
+
+		// 刷新验证码
+		function refreshImg() {
+			$("#img_yzm").attr("src",
+					$("#img_yzm").attr("src") + "?rd=" + Math.random());
+		}
+	</script>
+
+</body>
+</html>
